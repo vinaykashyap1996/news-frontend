@@ -1,0 +1,36 @@
+.signincontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:80vh;
+}
+.signincontainer .signinformlayout{
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #FFF5F8;
+}
+.signinformlayout H1,.signinformlayout h5,.signinformlayout .forgotpassword{
+    text-align: center;  
+}
+.signinformlayout .jss448{
+    width: 55px;
+    height: 4px;
+    margin: 8px auto 0;
+    display: block;
+    background-color: #ff3366;
+}
+.signinformlayout .MuiOutlinedInput-input {
+    padding: 18.5px 14px;
+    width: 350px !important;
+    background-color: white !important;
+}
+
+.signinformlayout .nav-link{
+    text-decoration: none;
+}
+.signinformlayout .MuiButton-outlinedSecondary{
+    background-color: #f50057;
+    width: 380px;
+    color: #FFFF
+}

@@ -1,0 +1,15 @@
+.MuiAppBar-colorPrimary {
+    color: #fff;
+    background-color: #403836 !important;
+}
+.MuiTypography-h6{
+    margin: 0 auto !important; 
+}
+.Linkdiv{
+    float: right;
+}
+.Linkdiv .nav-link{
+    padding:10px;
+    text-decoration:none;
+    text-transform: uppercase;
+}

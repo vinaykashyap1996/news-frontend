@@ -1,0 +1,64 @@
+.signupcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:80vh;
+}
+.signupcontainer .signuplayout{
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #FFF5F8;
+}
+
+.signuplayout .title{
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 42px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    line-height: 1.04;
+    text-transform: uppercase;
+}
+.signuplayout p{
+    font-size: 14px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.signuplayout .jss44S{
+    width: 40px;
+    height: 4px;
+    margin: 8px auto 0;
+    display: block;
+    background-color: #ff3366;
+}
+
+.signuplayout p,.signuplayout p{
+    text-align: center;  
+    text-decoration: none
+}
+.signuplayout .jss448{
+    width: 55px;
+    height: 4px;
+    margin: 8px auto 0;
+    display: block;
+    background-color: #ff3366;
+}
+.signuplayout .MuiOutlinedInput-input {
+    padding: 18.5px 14px;
+    width: 250px !important;
+    background-color: white !important;
+}
+.signuplayout .passwordcontainer .MuiOutlinedInput-input,.signuplayout .emailcontainer .MuiOutlinedInput-input{
+    padding: 18.5px 14px;
+    width: 531px !important;
+    background-color: white !important;
+}
+.signuplayout .MuiButton-outlinedSecondary{
+    background-color: #f50057;
+    width: 560px;
+    color: #FFFF
+}
+.signuplayout .nav-link{
+    text-decoration: none;
+}
