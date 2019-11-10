@@ -7,7 +7,7 @@ class Home extends Component {
     render(){
         return(
             <div className="Container">
-                    {/* <button className="button" onClick={(history)=>{this.props.history.push("/signup")}}>Register</button> */}
+                    { <button className="button" onClick={(history)=>{this.props.history.push("/signup")}}>Register</button> }
             </div>
         )
     }

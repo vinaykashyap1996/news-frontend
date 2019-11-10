@@ -19,9 +19,15 @@ class Reset extends Component {
   };
   onSubmit = event => {
     event.preventDefault();
+    const {
+      match: { params }
+    } = this.props;
     const { password } = this.state;
+    const token = params.token;
+    console.log(token);
+
     axios
-      .post("http://localhost:3002/user/resetpassword", { password })
+      .post("http://localhost:3002/user/resetpassword/" + token, { password })
       .then(response => {
         if (response.status === 200) {
           console.log(response);

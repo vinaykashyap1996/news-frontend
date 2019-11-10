@@ -8,29 +8,65 @@
     justify-content: center;
     align-items: center;
     padding: 15px;
-    background-color: #FFF5F8;
+    background-color: rgba(19, 35, 47, 0.9);
 }
 .signinformlayout H1,.signinformlayout h5,.signinformlayout .forgotpassword{
     text-align: center;  
+    color: #fff;
+}
+.signinformlayout H1{
+    font-size: 24px;
 }
 .signinformlayout .jss448{
     width: 55px;
     height: 4px;
-    margin: 8px auto 0;
+    margin: 0px auto 10px;
     display: block;
-    background-color: #ff3366;
+    background-color: #1ab188;
 }
 .signinformlayout .MuiOutlinedInput-input {
-    padding: 18.5px 14px;
+    padding: 10px 14px;
     width: 350px !important;
     background-color: white !important;
+    border-radius: 4px;
 }
 
 .signinformlayout .nav-link{
     text-decoration: none;
+    color: #999;
 }
 .signinformlayout .MuiButton-outlinedSecondary{
-    background-color: #f50057;
+    background-color: #1ab188;
     width: 380px;
-    color: #FFFF
+    color: #FFFF;
+    border: none;
+    margin-top: 7px;
+    padding: 7px 15px;
+    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+.signinformlayout .MuiButton-outlinedSecondary:hover{
+    background-color: #1ab188;
+    border: none;
+}
+
+.signinformlayout .MuiInputLabel-outlined{
+    transform: translate(14px, 14px) scale(1);
+}
+.signinformlayout .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border-color: #1ab188;
+    border-width: 1px;
+}
+.signinformlayout .MuiFormLabel-root.Mui-focused{
+    color: #1ab188;
+}
+.signinformlayout .MuiFormControl-marginNormal{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.signinformlayout .MuiFormLabel-root{
+    font-family: 'Poppins', sans-serif;
+}
+.signinformlayout .MuiInputLabel-outlined.MuiInputLabel-shrink{
+    color: #1ab188;
 }

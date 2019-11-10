@@ -7,30 +7,28 @@
 .signupcontainer .signuplayout{
     justify-content: center;
     align-items: center;
-    padding: 15px;
-    background-color: #FFF5F8;
+    padding: 20px;
+    background-color: rgba(19, 35, 47, 0.9);
 }
 
 .signuplayout .title{
-    color: rgba(0, 0, 0, 0.87);
-    font-size: 42px;
-    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+    font-size: 24px;
     font-weight: 700;
     line-height: 1.04;
     text-transform: uppercase;
 }
 .signuplayout p{
     font-size: 14px;
-    font-family: 'Work Sans', sans-serif;
     font-weight: 400;
     line-height: 1.5;
 }
 .signuplayout .jss44S{
     width: 40px;
     height: 4px;
-    margin: 8px auto 0;
+    margin: 8px auto 5px;
     display: block;
-    background-color: #ff3366;
+    background-color: #1ab188;
 }
 
 .signuplayout p,.signuplayout p{
@@ -42,23 +40,53 @@
     height: 4px;
     margin: 8px auto 0;
     display: block;
-    background-color: #ff3366;
+    background-color: #1ab188;
 }
 .signuplayout .MuiOutlinedInput-input {
-    padding: 18.5px 14px;
+    padding: 10px 14px;
     width: 250px !important;
     background-color: white !important;
+    border-radius: 4px;
 }
 .signuplayout .passwordcontainer .MuiOutlinedInput-input,.signuplayout .emailcontainer .MuiOutlinedInput-input{
-    padding: 18.5px 14px;
+    padding: 10px 14px;
     width: 531px !important;
     background-color: white !important;
 }
 .signuplayout .MuiButton-outlinedSecondary{
-    background-color: #f50057;
+    background-color: #1ab188;
     width: 560px;
-    color: #FFFF
+    color: #FFFF;
+    border: none;
+    margin-top: 5px;
+    padding: 7px 15px;
+    font-family: 'Poppins', sans-serif;
+}
+.signuplayout .MuiButton-outlinedSecondary:hover{
+    background-color: #1ab188;
+    border: none;
 }
 .signuplayout .nav-link{
     text-decoration: none;
+    color: #999;
+}
+.signuplayout .MuiInputLabel-outlined{
+    transform: translate(14px, 14px) scale(1);
+}
+.signuplayout .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border-color: #1ab188;
+    border-width: 1px;
+}
+.signuplayout .MuiFormLabel-root.Mui-focused{
+    color: #1ab188;
+}
+.signuplayout .MuiFormControl-marginNormal{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.signuplayout .MuiFormLabel-root{
+    font-family: 'Poppins', sans-serif;
+}
+.signuplayout .MuiInputLabel-outlined.MuiInputLabel-shrink{
+    color: #1ab188;
 }

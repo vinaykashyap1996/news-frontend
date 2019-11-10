@@ -1,6 +1,6 @@
 .MuiAppBar-colorPrimary {
     color: #fff;
-    background-color: #403836 !important;
+    background-color: rgba(19, 35, 47, 0.9) !important;
 }
 .MuiTypography-h6{
     margin: 0 auto !important; 

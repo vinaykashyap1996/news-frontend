@@ -2,41 +2,84 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  margin: 10px 0;
 }
+
 .ProfileContainer .profileLayout {
   background: 1px solid black;
   justify-content: center;
   align-items: center;
   padding: 55px;
-  background-color: grey;
+  background-color: rgba(19, 35, 47, 0.9);
   color: white;
 }
+
 .profileLayout .card {
   height: 350px;
   max-width: 455px;
+  overflow: auto;
 }
+
 .profileLayout .media {
   height: 0;
   padding: "56.25% 0 0 0";
 }
+
 .profileLayout .expand {
   transform: "rotate(0deg)";
   margin-left: "auto";
   transition-duration: 10s height;
 }
+
 .profileLayout .expandOpen {
   transform: "rotate(180deg)";
 }
+
 .profileLayout .avatar {
   background-color: red;
 }
+
 .profileLayout .buttoncontainer {
   padding: 15px 0 0 0;
 }
+
 .profileLayout .MuiSlider-root {
   color: black;
 }
+
 .profileLayout .button {
   float: right;
+  background-color: #1ab188;
+  color: #fff;
+}
+
+.profileLayout .button:hover {
+  background-color: #1ab188;
+  color: #fff;
+}
+
+.profileLayout .MuiButton-root {
+  font-family: "Poppins", sans-serif;
+}
+
+.button-right {
+  align-items: right;
+}
+
+.profileLayout .card {
+  height: 500px;
+  max-width: none;
+}
+
+.button-left {
+  float: left;
+}
+
+.iframe {
+  width: 455px !important;
+  height: 500px !important;
+}
+
+.MuiCardContent-root {
+  padding: 0 !important;
 }
