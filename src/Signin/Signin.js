@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Signin.css";
@@ -26,21 +26,22 @@ class SignIn extends Component {
     event.preventDefault();
     const { email, password } = this.state;
     axios
-      .post("http://localhost:3002/user/signin", { email, password })
+      .post(process.env.REACT_APP_BASE_URL + "user/signin", {
+        email,
+        password
+      })
       .then(response => {
-        if (response.status === 200) {
-          console.log(response);
+        if (response.status == 200) {
           this.setState({ success: true, message: response.data.message });
           sessionStorage.setItem("userID", response.data.userData._id);
+          this.props.onLogin();
+          this.props.history.push("/profile");
         } else {
           this.setState({ success: false, message: response.data.message });
         }
       });
   };
   render() {
-    if (this.state.success) {
-      return <Redirect to="/profile" />;
-    }
     return (
       <div className="signincontainer">
         <div className="signinformlayout">
@@ -52,6 +53,9 @@ class SignIn extends Component {
               signup here
             </Link>
           </h5>
+          <div>
+            <p>{this.state.message}</p>
+          </div>
           <div>
             <TextField
               id="outlined-basic"
@@ -93,4 +97,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

@@ -16,7 +16,7 @@ const styles = theme => ({
   }
 });
 const classes = styles();
-const Menu = ({ history }) => (
+const Menu = ({ history, isLoggedIn }) => (
   <div className="root">
     <AppBar className={classes.otherClass} position="static">
       <Toolbar>
@@ -29,28 +29,32 @@ const Menu = ({ history }) => (
         >
           News
         </Typography>
-        <span className="Linkdiv">
-          <Link
-            className="nav-link"
-            style={isActive(history, "/signin")}
-            to="/signin"
-          >
-            Sign In
-          </Link>
+        {!isLoggedIn && (
+          <span className="Linkdiv">
+            <Link
+              className="nav-link"
+              style={isActive(history, "/signin")}
+              to="/signin"
+            >
+              Sign In
+            </Link>
 
-          <Link
-            className="nav-link"
-            style={isActive(history, "/signup")}
-            to="/signup"
-          >
-            Sign Up
-          </Link>
-        </span>
-        {isAuthenticate() && (
+            <Link
+              className="nav-link"
+              style={isActive(history, "/signup")}
+              to="/signup"
+            >
+              Sign Up
+            </Link>
+          </span>
+        )}
+
+        {isLoggedIn && (
           <>
             <span>
               <li className="nav-item">
                 <a
+                  href="/#"
                   className="nav-link"
                   style={
                     (isActive(history, "/profile"),

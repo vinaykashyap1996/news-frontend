@@ -29,25 +29,27 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3002/news/getnews").then(response => {
-      if (response.status !== 200) {
-        this.setState({ success: true, message: response.data.message });
-      } else {
-        this.setState({
-          newsUrl: response.data.results,
-          srcURL: response.data.results[this.state.currentIndex].url,
-          date: response.data.results[this.state.currentIndex].date
-            ? new Date(
-                response.data.results[this.state.currentIndex].date
-              ).toDateString()
-            : "",
-          firstLetter: response.data.results[
-            this.state.currentIndex
-          ].author.charAt(0),
-          srcName: response.data.results[this.state.currentIndex].author
-        });
-      }
-    });
+    axios
+      .get(process.env.REACT_APP_BASE_URL + "news/getnews")
+      .then(response => {
+        if (response.status !== 200) {
+          this.setState({ success: true, message: response.data.message });
+        } else {
+          this.setState({
+            newsUrl: response.data.results,
+            srcURL: response.data.results[this.state.currentIndex].url,
+            date: response.data.results[this.state.currentIndex].date
+              ? new Date(
+                  response.data.results[this.state.currentIndex].date
+                ).toDateString()
+              : "",
+            firstLetter: response.data.results[
+              this.state.currentIndex
+            ].author.charAt(0),
+            srcName: response.data.results[this.state.currentIndex].author
+          });
+        }
+      });
   }
 
   nextItem = () => {
@@ -92,7 +94,7 @@ class Profile extends Component {
       pk: this.state.pIndex
     };
     axios
-      .post("http://localhost:3002/rating/ratingpost", body)
+      .post(process.env.REACT_APP_BASE_URL + "rating/ratingpost", body)
       .then(response => {
         if (response.status !== 200) {
           this.setState({ success: true, message: response.data.message });

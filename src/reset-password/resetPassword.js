@@ -27,7 +27,9 @@ class Reset extends Component {
     console.log(token);
 
     axios
-      .post("http://localhost:3002/user/resetpassword/" + token, { password })
+      .post(process.env.REACT_APP_BASE_URL + "user/resetpassword/" + token, {
+        password
+      })
       .then(response => {
         if (response.status === 200) {
           console.log(response);
