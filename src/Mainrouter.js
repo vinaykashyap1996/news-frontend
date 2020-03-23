@@ -10,7 +10,7 @@ import Resetpassword from "./reset-password/resetPassword";
 
 class MainRouter extends React.Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: sessionStorage.getItem("userID") ? true : false
   };
   onLogin = () => {
     this.setState({

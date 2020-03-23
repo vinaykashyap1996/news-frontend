@@ -1,15 +1,32 @@
 .MuiAppBar-colorPrimary {
-    color: #fff;
-    background-color: rgba(19, 35, 47, 0.9) !important;
+  color: #fff;
+  background-color: rgba(19, 35, 47, 0.9) !important;
 }
-.MuiTypography-h6{
-    margin: 0 auto !important; 
+.MuiTypography-h6 {
+  margin: 0 auto !important;
 }
-.Linkdiv{
-    float: right;
+.Linkdiv {
+  float: right;
 }
-.Linkdiv .nav-link{
-    padding:10px;
-    text-decoration:none;
-    text-transform: uppercase;
+.Linkdiv .nav-link {
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #999;
+}
+.menu-appbar {
+  background: "#403836";
+}
+
+.nav-link {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.nav-item {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
 }

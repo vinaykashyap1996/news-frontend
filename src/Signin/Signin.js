@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "./Signin.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { isModuleDeclaration } from "@babel/types";
 
 class SignIn extends Component {
   constructor() {
@@ -31,7 +30,7 @@ class SignIn extends Component {
         password
       })
       .then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           this.setState({ success: true, message: response.data.message });
           sessionStorage.setItem("userID", response.data.userData._id);
           this.props.onLogin();
@@ -87,7 +86,7 @@ class SignIn extends Component {
             </Button>
           </div>
           <div className="forgotpassword">
-            <Link class="nav-link" to="/forgotpassword">
+            <Link className="nav-link" to="/forgotpassword">
               Forgot password?
             </Link>
           </div>

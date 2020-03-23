@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { memo, useEffect, useState, useCallback } from "react";
 import "./profile.css";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -9,209 +9,232 @@ import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 
-class Profile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      expanded: false,
-      setExpanded: false,
-      firstLetter: "",
-      newsUrl: [],
-      success: false,
-      currentIndex: 0,
-      pIndex: 0,
-      bIndex: 0,
-      srcName: "",
-      date: "",
-      srcURL: "",
-      random: 0
-    };
-  }
+const Profile = memo(() => {
+  const [firstLetter, setFirstLetter] = useState("");
+  const [allNewsIDs, setAllNewsIDs] = useState([]);
+  const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+  const [pIndex, setPIndex] = useState(0);
+  const [bIndex, setBIndex] = useState(0);
+  const [srcName, setSrcName] = useState("");
+  const [srcURL, setSrcURL] = useState("");
+  const [publishedDate, setPublishedDate] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [currentNewsId, setCurrentNewsId] = useState(0);
 
-  componentDidMount() {
-    axios
-      .get(process.env.REACT_APP_BASE_URL + "news/getnews")
-      .then(response => {
-        if (response.status !== 200) {
-          this.setState({ success: true, message: response.data.message });
-        } else {
-          this.setState({
-            newsUrl: response.data.results,
-            srcURL: response.data.results[this.state.currentIndex].url,
-            date: response.data.results[this.state.currentIndex].date
-              ? new Date(
-                  response.data.results[this.state.currentIndex].date
-                ).toDateString()
-              : "",
-            firstLetter: response.data.results[
-              this.state.currentIndex
-            ].author.charAt(0),
-            srcName: response.data.results[this.state.currentIndex].author
+  const getNewsHandler = useCallback(
+    (newsIndex, data) => {
+      const allNews = data || allNewsIDs;
+      setCurrentNewsIndex(newsIndex);
+      let storageUserID = sessionStorage.getItem("userID");
+      if (allNews.length > 0) {
+        let newsId = allNews.length > 0 ? allNews[newsIndex]._id : 0;
+        setCurrentNewsId(newsId);
+        axios
+          .get(
+            process.env.REACT_APP_BASE_URL +
+              "news/getnews?newsId=" +
+              newsId +
+              "&userId=" +
+              storageUserID
+          )
+          .then(response => {
+            if (response.status !== 200) {
+              setErrorMessage(response.data.message);
+            } else {
+              let IndivdualNews = [...response.data.newsData];
+              let userData = [...response.data.userData];
+              setPublishedDate(
+                IndivdualNews[0].published_date
+                  ? new Date(IndivdualNews[0].published_date).toDateString()
+                  : ""
+              );
+              setSrcName(IndivdualNews[0].source);
+              let Fletter = IndivdualNews[0]
+                ? IndivdualNews[0].source.charAt(0)
+                : "";
+              setFirstLetter(Fletter);
+              let priorIndex =
+                userData.length > 0 ? userData[0].priorknowledge : 0;
+              let belivIndex =
+                userData.length > 0 ? userData[0].belivibalityIndex : 0;
+              setPIndex(priorIndex);
+              setBIndex(belivIndex);
+              setSrcURL(IndivdualNews[0].url);
+            }
           });
-        }
-      });
-  }
+      }
+    },
+    [allNewsIDs]
+  );
 
-  nextItem = () => {
-    let curIndex = this.state.currentIndex;
-    let newsUrlLength = this.state.newsUrl.length;
-    curIndex = curIndex + 1;
-    curIndex = curIndex % newsUrlLength; // when we implement back button
-    let srcURL = this.state.newsUrl[curIndex].url;
-    let date = this.dateFormat(curIndex);
-    let firstLetter = this.displayFirstLetter(curIndex);
-    let srcName = this.state.newsUrl[curIndex].author;
-    this.setState({
-      srcURL: srcURL,
-      pIndex: 0,
-      bIndex: 0,
-      currentIndex: curIndex,
-      random: this.state.random + 1,
-      date: date,
-      firstLetter: firstLetter,
-      srcName: srcName
-    });
-  };
-
-  prevItem = () => {
-    // when we implement back button
-    if (this.state.currentIndex === 0) {
-      this.state.currentIndex = this.state.newsUrl.length;
-    }
-    this.state.currentIndex = this.state.currentIndex - 1;
-    let srcURL = this.state.newsUrl[this.state.currentIndex].url;
-    this.setState({
-      srcURL: srcURL
-    });
-  };
-
-  nextButton = () => {
+  const getAllNewsIDsHandler = useCallback(() => {
     let storageUserID = sessionStorage.getItem("userID");
+    if (allNewsIDs.length === 0) {
+      axios
+        .get(
+          process.env.REACT_APP_BASE_URL +
+            "news/sessiondata?userId=" +
+            storageUserID
+        )
+        .then(response => {
+          if (response.status !== 200) {
+            setErrorMessage(response.data.message);
+          } else {
+            console.log("response", response.data.newsIds);
+            let allNewsId = [...response.data.newsIds];
+            let allSessionData = [...response.data.sessionData];
+            setAllNewsIDs(allNewsId || []);
+            let newsIndex =
+              allSessionData.length > 0 ? allSessionData.length - 1 : 0;
+            getNewsHandler(newsIndex, allNewsId);
+          }
+        });
+    }
+  }, [getNewsHandler, allNewsIDs.length]);
+
+  const timeIntervalHandler = useCallback(() => {
+    let startTime = 0;
+    startTime = new Date().getTime();
+    localStorage.setItem("StartTimer", startTime);
+  }, []);
+
+  const timeConversion = duration => {
+    var milliseconds = parseInt((duration % 1000) / 100),
+      seconds = Math.floor((duration / 1000) % 60),
+      minutes = Math.floor((duration / (1000 * 60)) % 60),
+      hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  };
+
+  useEffect(() => {
+    getAllNewsIDsHandler();
+    timeIntervalHandler();
+  }, [getAllNewsIDsHandler, timeIntervalHandler]);
+
+  const nextButton = () => {
+    let storageUserID = sessionStorage.getItem("userID");
+    let endTime = 0;
+    endTime = new Date().getTime();
+    localStorage.setItem("EndTimer", endTime);
+    let readingTime =
+      localStorage.getItem("EndTimer") - localStorage.getItem("StartTimer");
+    let conversionTime = timeConversion(readingTime);
     let body = {
       userId: storageUserID,
-      newsId: this.state.newsUrl[this.state.currentIndex]._id,
-      bi: this.state.bIndex,
-      pk: this.state.pIndex
+      newsId: currentNewsId,
+      bi: bIndex,
+      pk: pIndex,
+      readingTime: conversionTime,
+      flag: true
     };
     axios
       .post(process.env.REACT_APP_BASE_URL + "rating/ratingpost", body)
       .then(response => {
         if (response.status !== 200) {
-          this.setState({ success: true, message: response.data.message });
+          setErrorMessage(response.data.message);
         } else {
+          getNewsHandler(currentNewsIndex + 1);
         }
       });
-    this.nextItem();
   };
 
-  handleChange = name => (e, value) => {
-    this.setState({
-      [name]: value
-    });
+  const backButton = () => {
+    getNewsHandler(currentNewsIndex - 1);
   };
-
-  displayFirstLetter = index => {
-    let firstLetter = "";
-    firstLetter = this.state.newsUrl[index].author;
-    firstLetter = firstLetter.charAt(0).toUpperCase();
-    return firstLetter;
+  const handlePindexChange = name => (e, value) => {
+    setPIndex(value);
   };
-
-  dateFormat = index => {
-    let srcDate = this.state.newsUrl[index].date;
-    srcDate = srcDate ? new Date(srcDate).toDateString() : null;
-    return srcDate;
+  const handleBindexChange = name => (e, value) => {
+    setBIndex(value);
   };
-
-  render() {
-    let frameContent = "";
-    if (this.state.newsUrl && this.state.newsUrl.length > 0) {
-      frameContent = (
-        <CardContent>
-          <iframe
-            key={this.state.random}
-            src={this.state.srcURL}
-            is="x-frame-bypass"
-            width="455px"
-            height="500px"
-          ></iframe>
-        </CardContent>
-      );
-    }
-
-    return (
-      <div className="ProfileContainer">
-        <div className="profileLayout">
-          <Card className={"card"}>
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe" className={"avatar"}>
-                  {this.state.firstLetter}
-                </Avatar>
-              }
-              title={this.state.srcName}
-              subheader={this.state.date}
-            />
-            <CardContent className="MuiCardContent-root:last-child ">
-              {frameContent}
+  return (
+    <div className="ProfileContainer">
+      <div className="profileLayout">
+        <Card className={"card"}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={"avatar"}>
+                {firstLetter}
+              </Avatar>
+            }
+            title={srcName}
+            subheader={publishedDate}
+          />
+          <CardContent className="MuiCardContent-root:last-child ">
+            <CardContent>
+              <iframe
+                title={srcURL}
+                key={srcURL}
+                src={srcURL}
+                is="x-frame-bypass"
+                width="455px"
+                height="500px"
+              ></iframe>
             </CardContent>
-          </Card>
-          <div className="buttoncontainer">
-            <div>
-              <Typography id="discrete-slider-custom" gutterBottom>
-                Believability Index (BI)
-              </Typography>
-              <Slider
-                defaultValue={0}
-                aria-labelledby="discrete-slider-custom"
-                step={10}
-                valueLabelDisplay="auto"
-                onChange={this.handleChange("bIndex")}
-                value={this.state.bIndex}
-              />
-            </div>
-            <div>
-              <Typography id="discrete-slider-custom" gutterBottom>
-                Prior Knowledge (PK)
-              </Typography>
-              <Slider
-                defaultValue={0}
-                aria-labelledby="discrete-slider-custom"
-                step={10}
-                valueLabelDisplay="auto"
-                onChange={this.handleChange("pIndex")}
-                value={this.state.pIndex}
-              />
-            </div>
-          </div>
-          {/* <div className="button-left">
-            <label htmlFor="contained-button-file">
-              <Button
-                variant="contained"
-                component="span"
-                className={"button"}
-                onClick={() => this.nextButton()}
-              >
-                Next
-              </Button>
-            </label>
-          </div> */}
+          </CardContent>
+        </Card>
+        <div className="buttoncontainer">
           <div>
-            <label htmlFor="contained-button-file">
-              <Button
-                variant="contained"
-                component="span"
-                className={"button"}
-                onClick={() => this.nextButton()}
-              >
-                Next
-              </Button>
-            </label>
+            <Typography id="discrete-slider-custom" gutterBottom>
+              Believability Index (BI)
+            </Typography>
+            <Slider
+              defaultValue={0}
+              aria-labelledby="discrete-slider-custom"
+              step={10}
+              onChange={handleBindexChange("Bindex")}
+              valueLabelDisplay="auto"
+              value={bIndex}
+            />
+          </div>
+          <div>
+            <Typography id="discrete-slider-custom" gutterBottom>
+              Prior Knowledge (PK)
+            </Typography>
+            <Slider
+              defaultValue={0}
+              aria-labelledby="discrete-slider-custom"
+              step={10}
+              onChange={handlePindexChange("Pindex")}
+              valueLabelDisplay="auto"
+              value={pIndex}
+            />
           </div>
         </div>
+        {currentNewsIndex !== 0 && (
+          <div className="button-left">
+            <label htmlFor="contained-button-file">
+              <Button
+                variant="contained"
+                component="span"
+                className={"button"}
+                onClick={() => backButton()}
+              >
+                Previous
+              </Button>
+            </label>
+          </div>
+        )}
+        <div>
+          <label htmlFor="contained-button-file">
+            <Button
+              variant="contained"
+              component="span"
+              className={"button"}
+              onClick={() => nextButton()}
+            >
+              Next
+            </Button>
+          </label>
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+});
 
 export default Profile;
