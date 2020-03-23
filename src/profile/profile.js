@@ -215,7 +215,7 @@ const Profile = memo(() => {
                 className={"button"}
                 onClick={() => backButton()}
               >
-                Previous
+                Back
               </Button>
             </label>
           </div>
