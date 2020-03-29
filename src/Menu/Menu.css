@@ -23,10 +23,12 @@
   text-transform: uppercase;
   color: #999;
 }
-
 .nav-item {
   text-decoration: none;
 }
 ul {
   list-style-type: none;
+}
+.MuiButton-root {
+  color: #fff !important;
 }

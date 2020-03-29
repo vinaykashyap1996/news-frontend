@@ -7,6 +7,7 @@ import Signin from "./Signin/Signin";
 import password from "./forgot-password/forgotpassword";
 import Profile from "./profile/profile";
 import Resetpassword from "./reset-password/resetPassword";
+import Changepassword from "./change-password/changepassword";
 
 class MainRouter extends React.Component {
   state = {
@@ -31,6 +32,11 @@ class MainRouter extends React.Component {
           />
           <Route exact path="/forgotpassword" component={password} />
           <ProtectedRoute exact path="/profile" component={Profile} />
+          <ProtectedRoute
+            exact
+            path="/changepassword"
+            component={Changepassword}
+          />
           <Route exact path="/reset/:token" component={Resetpassword} />
         </Switch>
       </div>

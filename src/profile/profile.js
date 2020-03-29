@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
+
 import "./profile.css";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -80,7 +81,6 @@ const Profile = memo(() => {
           if (response.status !== 200) {
             setErrorMessage(response.data.message);
           } else {
-            console.log("response", response.data.newsIds);
             let allNewsId = [...response.data.newsIds];
             let allSessionData = [...response.data.sessionData];
             setAllNewsIDs(allNewsId || []);
@@ -184,6 +184,7 @@ const Profile = memo(() => {
               Believability Index (BI)
             </Typography>
             <Slider
+              className="slider"
               defaultValue={0}
               aria-labelledby="discrete-slider-custom"
               step={10}
@@ -197,6 +198,7 @@ const Profile = memo(() => {
               Prior Knowledge (PK)
             </Typography>
             <Slider
+              className="slider"
               defaultValue={0}
               aria-labelledby="discrete-slider-custom"
               step={10}

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import swal from "sweetalert";
+
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -18,27 +20,43 @@ class SignIn extends Component {
     };
   }
   handleChange = name => event => {
-    this.setState({ error: "" });
     this.setState({ [name]: event.target.value });
+  };
+  validate = () => {
+    let message = "";
+    if (!this.state.email.includes("@")) {
+      message = " Please provide a proper email format";
+    }
+    if (message) {
+      this.setState({ message });
+      swal(message);
+      return false;
+    }
+    return true;
   };
   onSubmit = event => {
     event.preventDefault();
-    const { email, password } = this.state;
-    axios
-      .post(process.env.REACT_APP_BASE_URL + "user/signin", {
-        email,
-        password
-      })
-      .then(response => {
-        if (response.status === 200) {
-          this.setState({ success: true, message: response.data.message });
-          sessionStorage.setItem("userID", response.data.userData._id);
-          this.props.onLogin();
-          this.props.history.push("/profile");
-        } else {
-          this.setState({ success: false, message: response.data.message });
-        }
-      });
+    let isValid = this.validate();
+    if (isValid) {
+      const { email, password } = this.state;
+      axios
+        .post(process.env.REACT_APP_BASE_URL + "user/signin", {
+          email,
+          password
+        })
+        .then(response => {
+          if (response.data.status === 200) {
+            this.setState({ success: true, message: response.data.message });
+            swal(this.state.message);
+            sessionStorage.setItem("userID", response.data.userData._id);
+            this.props.onLogin();
+            this.props.history.push("/profile");
+          } else {
+            this.setState({ success: false, error: response.data.message });
+            swal(this.state.error);
+          }
+        });
+    }
   };
   render() {
     return (
@@ -53,9 +71,6 @@ class SignIn extends Component {
             </Link>
           </h5>
           <div>
-            <p>{this.state.message}</p>
-          </div>
-          <div>
             <TextField
               id="outlined-basic"
               className={"textField"}
@@ -69,6 +84,7 @@ class SignIn extends Component {
           <div>
             <TextField
               className={"textField"}
+              type="Password"
               label="Password"
               margin="normal"
               variant="outlined"

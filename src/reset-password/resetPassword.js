@@ -14,7 +14,6 @@ class Reset extends Component {
     };
   }
   handleChange = name => event => {
-    this.setState({ error: "" });
     this.setState({ [name]: event.target.value });
   };
   onSubmit = event => {
@@ -24,15 +23,12 @@ class Reset extends Component {
     } = this.props;
     const { password } = this.state;
     const token = params.token;
-    console.log(token);
-
     axios
       .post(process.env.REACT_APP_BASE_URL + "user/resetpassword/" + token, {
         password
       })
       .then(response => {
         if (response.status === 200) {
-          console.log(response);
           this.setState({ success: true, message: response.data.message });
         } else {
           this.setState({ success: false, message: response.data.message });

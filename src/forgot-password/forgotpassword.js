@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./forgotpassword.css";
 import axios from "axios";
+import swal from "sweetalert";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 class ForgotPassword extends Component {
@@ -14,21 +15,37 @@ class ForgotPassword extends Component {
     };
   }
   handleChange = name => event => {
-    this.setState({ error: "" });
     this.setState({ [name]: event.target.value });
+  };
+  validate = () => {
+    let message = "";
+    if (!this.state.email.includes("@")) {
+      message = " Please provide a proper email format";
+    }
+    if (message) {
+      this.setState({ message });
+      swal(message);
+      return false;
+    }
+    return true;
   };
   submitclick = event => {
     event.preventDefault();
-    const email = this.state.email;
-    axios
-      .post(process.env.REACT_APP_BASE_URL + "user/forgotpassword", { email })
-      .then(response => {
-        if (response.status === 200) {
-          this.setState({ success: true, message: response.data.message });
-        } else {
-          this.setState({ success: false, message: response.data.message });
-        }
-      });
+    let isValid = this.validate();
+    if (isValid) {
+      const email = this.state.email;
+      axios
+        .post(process.env.REACT_APP_BASE_URL + "user/forgotpassword", { email })
+        .then(response => {
+          if (response.status === 200) {
+            this.setState({ success: true, message: response.data.message });
+            swal(this.state.message);
+          } else {
+            this.setState({ success: false, message: response.data.message });
+            swal(this.state.message);
+          }
+        });
+    }
   };
   render() {
     if (this.state.success) {
