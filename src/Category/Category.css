@@ -1,46 +1,27 @@
-.resetcontainer {
+.languageincontainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
 }
-.resetcontainer .resetformlayout {
+.languageincontainer .languageinlayout {
   justify-content: center;
   align-items: center;
   padding: 15px;
   background-color: rgba(19, 35, 47, 0.9);
 }
-.resetformlayout h1 {
-  font-size: 24px;
-  color: #fff;
-  text-align: center;
-  text-transform: uppercase;
-}
-.resetformlayout .jss448 {
-  width: 55px;
-  height: 4px;
-  margin: 8px auto 10px;
-  display: block;
-  background-color: #1ab188;
-}
-
-.resetformlayout .MuiOutlinedInput-input {
+.languageinlayout .MuiOutlinedInput-input {
   padding: 10px 14px;
   width: 350px !important;
   background-color: white !important;
   border-radius: 4px;
 }
-
-.resetformlayout .btn {
-  text-align: center;
-}
 .MuiInputLabel-outlined.MuiInputLabel-shrink {
   transform: translate(18px, -18px) scale(0.75) !important;
 }
-
-.resetformlayout .MuiButton-outlinedSecondary {
+.languageinlayout .MuiButton-outlinedSecondary {
   background-color: #1ab188;
-  width: 180px;
+  width: 380px;
   color: #ffff;
   border: none;
   margin-top: 7px;
@@ -48,30 +29,33 @@
   margin-bottom: 8px;
   font-family: "Poppins", sans-serif;
 }
-.resetformlayout .MuiButton-outlinedSecondary:hover {
+.languageinlayout .MuiButton-outlinedSecondary:hover {
   background-color: #1ab188;
   border: none;
 }
 
-.resetformlayout .MuiInputLabel-outlined {
+.languageinlayout .MuiInputLabel-outlined {
   transform: translate(14px, 14px) scale(1);
 }
-.resetformlayout
+.languageinlayout
   .MuiOutlinedInput-root.Mui-focused
   .MuiOutlinedInput-notchedOutline {
   border-color: #1ab188;
   border-width: 1px;
 }
-.resetformlayout .MuiFormLabel-root.Mui-focused {
+.languageinlayout .MuiFormLabel-root.Mui-focused {
   color: #1ab188;
 }
-.resetformlayout .MuiFormControl-marginNormal {
+.languageinlayout .MuiFormControl-marginNormal {
   margin-top: 8px;
   margin-bottom: 8px;
 }
-.resetformlayout .MuiFormLabel-root {
+.languageinlayout .MuiFormLabel-root {
   font-family: "Poppins", sans-serif;
 }
-.resetformlayout .MuiInputLabel-outlined.MuiInputLabel-shrink {
+.languageinlayout .MuiInputLabel-outlined.MuiInputLabel-shrink {
   color: #1ab188;
+}
+.languageinlayout .MuiFormHelperText-root {
+  color: #fff !important;
 }

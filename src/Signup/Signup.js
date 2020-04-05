@@ -1,131 +1,141 @@
-import React, { Component } from "react";
+import React, { useState, memo } from "react";
+import { useToasts } from "react-toast-notifications";
 import swal from "sweetalert";
-
 import "./Signup.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-class Signup extends Component {
-  constructor() {
-    super();
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      success: false,
-      message: "",
-      error: ""
-    };
-  }
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+const Signup = memo(props => {
+  const { addToast } = useToasts();
+  const [firstName, setFirstname] = useState("");
+  const [lastName, setLastname] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const firstnamehandleChange = name => (event, value) => {
+    setFirstname(event.target.value);
   };
-  validate = () => {
+  const lastnamehandleChange = name => (event, value) => {
+    setLastname(event.target.value);
+  };
+  const emailhandleChange = name => (event, value) => {
+    setEmail(event.target.value);
+  };
+  const passwordhandleChange = name => (event, value) => {
+    setPassword(event.target.value);
+  };
+  const validate = () => {
     let message = "";
-    if (!this.state.email.includes("@")) {
+    if (!Email.includes("@")) {
       message = " Please provide a proper email format";
     }
     if (message) {
-      this.setState({ message });
-      swal(message);
+      setErrorMessage(message);
+      addToast(errorMessage, {
+        appearance: "error",
+        autoDismiss: true
+      });
       return false;
     }
     return true;
   };
-  onSubmit = event => {
-    event.preventDefault();
-    const isValid = this.validate();
+  let history = useHistory();
+  const onSubmit = () => {
+    const isValid = validate();
     if (isValid) {
-      const { firstName, lastName, email, password } = this.state;
+      const body = {
+        firstName: firstName,
+        lastName: lastName,
+        email: Email,
+        password: Password
+      };
       axios
-        .post(process.env.REACT_APP_BASE_URL + "user/signup", {
-          firstName,
-          lastName,
-          email,
-          password
-        })
+        .post(process.env.REACT_APP_BASE_URL + "user/signup", body)
         .then(response => {
           if (response.data.status === 200) {
-            this.setState({ success: true, message: response.data.message });
+            setErrorMessage(response.data.message);
             sessionStorage.setItem("userID", response.data.result._id);
-            // this.props.onLogin();
-            this.props.history.push("/profile");
-            swal(this.state.message);
+            props.onLogin();
+            history.push("/language");
+            // window.location.reload();
+            swal(errorMessage);
           } else {
-            this.setState({ success: false, error: response.data.message });
-            swal(this.state.error);
+            setErrorMessage(response.data.message);
+            addToast(errorMessage, {
+              appearance: "error",
+              autoDismiss: true
+            });
           }
         });
     }
   };
-  render() {
-    return (
-      <div className="signupcontainer">
-        <div className="signuplayout">
-          <p className="title">Sign up</p>
-          <span className="jss44S"></span>
-          <p>
-            <Link className="nav-link" to="/signin">
-              Already have an account?
-            </Link>
-          </p>
-          <div>
-            <TextField
-              className={"textField"}
-              label="Firstname"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange("firstName")}
-              value={this.state.firstName}
-            />
-            <span> </span>
-            <TextField
-              className={"textField"}
-              label="Lastname"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange("lastName")}
-              value={this.state.lastName}
-            />
-          </div>
-          <div className="emailcontainer">
-            <TextField
-              name="Email"
-              className={"textField"}
-              label="Email"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange("email")}
-              value={this.state.email}
-            />
-          </div>
-          <div className="passwordcontainer">
-            <TextField
-              className={"textField"}
-              type="Password"
-              label="Password"
-              margin="normal"
-              variant="outlined"
-              onChange={this.handleChange("password")}
-              value={this.state.password}
-            />
-          </div>
-          <div>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={this.onSubmit}
-            >
-              SIGN UP
-            </Button>
-          </div>
+  return (
+    <div className="signupcontainer">
+      <div className="signuplayout">
+        <p className="title">Sign up</p>
+        <span className="jss44S"></span>
+        <p>
+          <Link className="nav-link" to="/signin">
+            Already have an account?
+          </Link>
+        </p>
+        <div>
+          <TextField
+            className={"textField"}
+            label="Firstname"
+            margin="normal"
+            variant="outlined"
+            onChange={firstnamehandleChange("firstName")}
+            value={firstName}
+          />
+          <span> </span>
+          <TextField
+            className={"textField"}
+            label="Lastname"
+            margin="normal"
+            variant="outlined"
+            onChange={lastnamehandleChange("lastName")}
+            value={lastName}
+          />
+        </div>
+        <div className="emailcontainer">
+          <TextField
+            name="Email"
+            className={"textField"}
+            label="Email"
+            margin="normal"
+            variant="outlined"
+            onChange={emailhandleChange("email")}
+            value={Email}
+          />
+        </div>
+        <div className="passwordcontainer">
+          <TextField
+            className={"textField"}
+            type="Password"
+            label="Password"
+            margin="normal"
+            variant="outlined"
+            onChange={passwordhandleChange("password")}
+            value={Password}
+          />
+        </div>
+        <div>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => {
+              onSubmit();
+            }}
+          >
+            SIGN UP
+          </Button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+});
 
 export default Signup;

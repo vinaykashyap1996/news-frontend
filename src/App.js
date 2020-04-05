@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 import Mainrouter from "./Mainrouter";
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { ToastProvider } from "react-toast-notifications";
 
-const App=()=>(
-  
-  <BrowserRouter>
-    <Mainrouter />
-  </BrowserRouter>
-
-)
+const App = () => (
+  <ToastProvider>
+    <BrowserRouter>
+      <Mainrouter />
+    </BrowserRouter>
+  </ToastProvider>
+);
 
 export default App;

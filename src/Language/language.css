@@ -1,0 +1,64 @@
+.languageincontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.languageincontainer .languageinlayout {
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: rgba(19, 35, 47, 0.9);
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(18px, -18px) scale(0.75) !important;
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(18px, -18px) scale(0.75) !important;
+}
+.languageinlayout .MuiOutlinedInput-input {
+  padding: 10px 14px;
+  width: 350px !important;
+  background-color: white !important;
+  border-radius: 4px;
+}
+.languageinlayout .MuiButton-outlinedSecondary {
+  background-color: #1ab188;
+  width: 380px;
+  color: #ffff;
+  border: none;
+  margin-top: 7px;
+  padding: 7px 15px;
+  margin-bottom: 8px;
+  font-family: "Poppins", sans-serif;
+}
+.languageinlayout .MuiButton-outlinedSecondary:hover {
+  background-color: #1ab188;
+  border: none;
+}
+
+.languageinlayout .MuiInputLabel-outlined {
+  transform: translate(14px, 14px) scale(1);
+}
+.languageinlayout
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #1ab188;
+  border-width: 1px;
+}
+.languageinlayout .MuiFormLabel-root.Mui-focused {
+  color: #1ab188;
+}
+.languageinlayout .MuiFormControl-marginNormal {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.languageinlayout .MuiFormLabel-root {
+  font-family: "Poppins", sans-serif;
+}
+.languageinlayout .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  color: #1ab188;
+}
+.languageinlayout .MuiFormHelperText-root {
+  color: #fff !important;
+}

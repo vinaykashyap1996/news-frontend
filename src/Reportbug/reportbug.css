@@ -1,43 +1,43 @@
-.signincontainer {
+.reportincontainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
 }
-.signincontainer .signinformlayout {
+.reportincontainer .reportinformlayout {
   justify-content: center;
   align-items: center;
   padding: 15px;
   background-color: rgba(19, 35, 47, 0.9);
 }
-.signinformlayout h1,
-.signinformlayout h5,
-.signinformlayout .forgotpassword {
+.reportinformlayout h1,
+.reportinformlayout h5,
+.reportinformlayout .forgotpassword {
   text-align: center;
   color: #fff;
 }
-.signinformlayout h1 {
+.reportinformlayout h1 {
   font-size: 24px;
 }
-.signinformlayout .jss448 {
+.reportinformlayout .jss448 {
   width: 55px;
   height: 4px;
   margin: 0px auto 10px;
   display: block;
   background-color: #1ab188;
 }
-.signinformlayout .MuiOutlinedInput-input {
+.reportinformlayout .MuiOutlinedInput-input {
   padding: 10px 14px;
   width: 350px !important;
   background-color: white !important;
   border-radius: 4px;
 }
 
-.signinformlayout .nav-link {
+.reportinformlayout .nav-link {
   text-decoration: none;
   color: #999;
 }
-.signinformlayout .MuiButton-outlinedSecondary {
+.reportinformlayout .MuiButton-outlinedSecondary {
   background-color: #1ab188;
   width: 380px;
   color: #ffff;
@@ -47,54 +47,52 @@
   margin-bottom: 8px;
   font-family: "Poppins", sans-serif;
 }
-.signinformlayout .MuiButton-outlinedSecondary:hover {
+.reportinformlayout .MuiButton-outlinedSecondary:hover {
   background-color: #1ab188;
   border: none;
 }
 
-.signinformlayout .MuiInputLabel-outlined {
+.reportinformlayout .MuiInputLabel-outlined {
   transform: translate(14px, 14px) scale(1);
 }
-.signinformlayout
+.reportinformlayout
   .MuiOutlinedInput-root.Mui-focused
   .MuiOutlinedInput-notchedOutline {
   border-color: #1ab188;
   border-width: 1px;
 }
-.signinformlayout .MuiFormLabel-root.Mui-focused {
+.reportinformlayout .MuiFormLabel-root.Mui-focused {
   color: #1ab188;
 }
-.signinformlayout .MuiFormControl-marginNormal {
+.reportinformlayout .MuiFormControl-marginNormal {
   margin-top: 8px;
   margin-bottom: 8px;
 }
-.signinformlayout .MuiFormLabel-root {
+.reportinformlayout .MuiFormLabel-root {
   font-family: "Poppins", sans-serif;
 }
-.signinformlayout .MuiInputLabel-outlined.MuiInputLabel-shrink {
+.reportinformlayout .MuiInputLabel-outlined.MuiInputLabel-shrink {
   color: #1ab188;
 }
-.MuiInputLabel-outlined.MuiInputLabel-shrink {
-  transform: translate(18px, -18px) scale(0.75) !important;
-}
+
 @media only screen and (max-width: 600px) {
-  .signincontainer .signinformlayout {
+  .reportincontainer .reportinformlayout {
     padding: 5px;
     width: 100%;
   }
-  .signinformlayout h1 {
+  .reportinformlayout h1 {
     font-size: 20px;
   }
-  .signinformlayout .MuiFormControl-marginNormal {
-    margin-top: 8px;
-    margin-bottom: 8px;
+  .reportinformlayout .MuiFormControl-marginNormal {
     width: 100%;
   }
-
-  .signinformlayout .MuiOutlinedInput-input {
+  .MuiInputLabel-outlined.MuiInputLabel-shrink {
+    transform: translate(18px, -18px) scale(0.75) !important;
+  }
+  .reportinformlayout .MuiOutlinedInput-input {
     width: 100% !important;
   }
-  .signinformlayout .MuiButton-outlinedSecondary {
+  .reportinformlayout .MuiButton-outlinedSecondary {
     background-color: #1ab188;
     border: none;
     width: 100% !important;

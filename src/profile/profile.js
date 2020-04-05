@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
-
+import { useHistory } from "react-router-dom";
+import Tooltip from "@material-ui/core/Tooltip";
+// import GTranslateIcon from "@material-ui/icons/GTranslate";
 import "./profile.css";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -8,6 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
+import BugReportIcon from "@material-ui/icons/BugReport";
 import axios from "axios";
 
 const Profile = memo(() => {
@@ -21,6 +24,7 @@ const Profile = memo(() => {
   const [publishedDate, setPublishedDate] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentNewsId, setCurrentNewsId] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const getNewsHandler = useCallback(
     (newsIndex, data) => {
@@ -67,6 +71,13 @@ const Profile = memo(() => {
     },
     [allNewsIDs]
   );
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const getAllNewsIDsHandler = useCallback(() => {
     let storageUserID = sessionStorage.getItem("userID");
@@ -116,6 +127,8 @@ const Profile = memo(() => {
     timeIntervalHandler();
   }, [getAllNewsIDsHandler, timeIntervalHandler]);
 
+  let history = useHistory();
+
   const nextButton = () => {
     let storageUserID = sessionStorage.getItem("userID");
     let endTime = 0;
@@ -143,6 +156,14 @@ const Profile = memo(() => {
       });
   };
 
+  const bypassCheck = () => {
+    if (srcName !== "youtube.com") {
+      return "x-frame-bypass";
+    } else {
+      return "null";
+    }
+  };
+
   const backButton = () => {
     getNewsHandler(currentNewsIndex - 1);
   };
@@ -155,6 +176,25 @@ const Profile = memo(() => {
   return (
     <div className="ProfileContainer">
       <div className="profileLayout">
+        <div className={"button-right"}>
+          <Tooltip
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            title="Report Bug"
+          >
+            <Button
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={() => history.push(`/report/${currentNewsId}`)}
+            >
+              <BugReportIcon />
+            </Button>
+          </Tooltip>
+          {/* <Button aria-controls="simple-menu" aria-haspopup="true">
+            <GTranslateIcon className={"languagebutton"} />
+          </Button> */}
+        </div>
         <Card className={"card"}>
           <CardHeader
             avatar={
@@ -168,12 +208,12 @@ const Profile = memo(() => {
           <CardContent className="MuiCardContent-root:last-child ">
             <CardContent>
               <iframe
+                is={bypassCheck()}
+                width="455px"
+                height="500px"
                 title={srcURL}
                 key={srcURL}
                 src={srcURL}
-                is="x-frame-bypass"
-                width="455px"
-                height="500px"
               ></iframe>
             </CardContent>
           </CardContent>
@@ -183,13 +223,14 @@ const Profile = memo(() => {
             <Typography id="discrete-slider-custom" gutterBottom>
               Believability Index (BI)
             </Typography>
+            <div></div>
             <Slider
               className="slider"
               defaultValue={0}
               aria-labelledby="discrete-slider-custom"
               step={10}
               onChange={handleBindexChange("Bindex")}
-              valueLabelDisplay="auto"
+              valueLabelDisplay="on"
               value={bIndex}
             />
           </div>
@@ -197,13 +238,14 @@ const Profile = memo(() => {
             <Typography id="discrete-slider-custom" gutterBottom>
               Prior Knowledge (PK)
             </Typography>
+            <span />
             <Slider
               className="slider"
               defaultValue={0}
               aria-labelledby="discrete-slider-custom"
               step={10}
               onChange={handlePindexChange("Pindex")}
-              valueLabelDisplay="auto"
+              valueLabelDisplay="on"
               value={pIndex}
             />
           </div>

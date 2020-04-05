@@ -1,92 +1,125 @@
-.signupcontainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:80vh;
+.signupcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
-.signupcontainer .signuplayout{
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(19, 35, 47, 0.9);
-}
-
-.signuplayout .title{
-    color: #fff;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.04;
-    text-transform: uppercase;
-}
-.signuplayout p{
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-}
-.signuplayout .jss44S{
-    width: 40px;
-    height: 4px;
-    margin: 8px auto 5px;
-    display: block;
-    background-color: #1ab188;
+.signupcontainer .signuplayout {
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(19, 35, 47, 0.9);
 }
 
-.signuplayout p,.signuplayout p{
-    text-align: center;  
-    text-decoration: none
+.signuplayout .title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.04;
+  text-transform: uppercase;
 }
-.signuplayout .jss448{
-    width: 55px;
-    height: 4px;
-    margin: 8px auto 0;
-    display: block;
-    background-color: #1ab188;
+.signuplayout p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.signuplayout .jss44S {
+  width: 40px;
+  height: 4px;
+  margin: 8px auto 5px;
+  display: block;
+  background-color: #1ab188;
+}
+
+.signuplayout p,
+.signuplayout p {
+  text-align: center;
+  text-decoration: none;
+}
+.signuplayout .jss448 {
+  width: 55px;
+  height: 4px;
+  margin: 8px auto 0;
+  display: block;
+  background-color: #1ab188;
 }
 .signuplayout .MuiOutlinedInput-input {
-    padding: 10px 14px;
-    width: 250px !important;
-    background-color: white !important;
-    border-radius: 4px;
+  padding: 10px 14px;
+  width: 250px !important;
+  background-color: white !important;
+  border-radius: 4px;
 }
-.signuplayout .passwordcontainer .MuiOutlinedInput-input,.signuplayout .emailcontainer .MuiOutlinedInput-input{
-    padding: 10px 14px;
-    width: 531px !important;
-    background-color: white !important;
+.signuplayout .passwordcontainer .MuiOutlinedInput-input,
+.signuplayout .emailcontainer .MuiOutlinedInput-input {
+  padding: 10px 14px;
+  width: 531px !important;
+  background-color: white !important;
 }
-.signuplayout .MuiButton-outlinedSecondary{
+.signuplayout .MuiButton-outlinedSecondary {
+  background-color: #1ab188;
+  width: 560px;
+  color: #ffff;
+  border: none;
+  margin-top: 5px;
+  padding: 7px 15px;
+  font-family: "Poppins", sans-serif;
+}
+.signuplayout .MuiButton-outlinedSecondary:hover {
+  background-color: #1ab188;
+  border: none;
+}
+.signuplayout .nav-link {
+  text-decoration: none;
+  color: #999;
+}
+.signuplayout .MuiInputLabel-outlined {
+  transform: translate(14px, 14px) scale(1);
+}
+.signuplayout
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #1ab188;
+  border-width: 1px;
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(18px, -18px) scale(0.75) !important;
+}
+.signuplayout .MuiFormLabel-root.Mui-focused {
+  color: #1ab188;
+}
+.signuplayout .MuiFormControl-marginNormal {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.signuplayout .MuiFormLabel-root {
+  font-family: "Poppins", sans-serif;
+}
+.signuplayout .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  color: #1ab188;
+}
+
+@media only screen and (max-width: 600px) {
+  .signupcontainer .signuplayout {
+    padding: 5px;
+    width: 100%;
+  }
+  .signuplayout h1 {
+    font-size: 20px;
+  }
+  .signuplayout .MuiFormControl-marginNormal {
+    width: 100%;
+  }
+  .signuplayout .MuiOutlinedInput-input {
+    width: 100% !important;
+  }
+
+  .signuplayout .passwordcontainer .MuiOutlinedInput-input,
+  .signuplayout .emailcontainer .MuiOutlinedInput-input {
+    width: 100% !important;
+  }
+  .signuplayout .MuiButton-outlinedSecondary {
     background-color: #1ab188;
-    width: 560px;
-    color: #FFFF;
     border: none;
-    margin-top: 5px;
-    padding: 7px 15px;
-    font-family: 'Poppins', sans-serif;
-}
-.signuplayout .MuiButton-outlinedSecondary:hover{
-    background-color: #1ab188;
-    border: none;
-}
-.signuplayout .nav-link{
-    text-decoration: none;
-    color: #999;
-}
-.signuplayout .MuiInputLabel-outlined{
-    transform: translate(14px, 14px) scale(1);
-}
-.signuplayout .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-    border-color: #1ab188;
-    border-width: 1px;
-}
-.signuplayout .MuiFormLabel-root.Mui-focused{
-    color: #1ab188;
-}
-.signuplayout .MuiFormControl-marginNormal{
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-.signuplayout .MuiFormLabel-root{
-    font-family: 'Poppins', sans-serif;
-}
-.signuplayout .MuiInputLabel-outlined.MuiInputLabel-shrink{
-    color: #1ab188;
+    width: 100% !important;
+  }
 }

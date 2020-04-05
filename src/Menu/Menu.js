@@ -2,7 +2,6 @@ import React from "react";
 import "./Menu.css";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -21,101 +20,145 @@ function SimpleMenu(history, isLoggedIn) {
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
-  console.log(history);
-
   const handleClose = () => {
     setAnchorEl(null);
   };
   return (
     <div className="root">
       <AppBar className="menu-appbar" position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            className="title"
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            News
-          </Typography>
+        <Toolbar className="tool-bar">
           {!history.isLoggedIn && (
-            <span className="Linkdiv">
-              <Link
-                className="nav-link"
-                style={isActive(history, "/signin")}
-                to="/signin"
-              >
-                Sign In
-              </Link>
-              <Link
-                className="nav-link"
-                style={isActive(history, "/signup")}
-                to="/signup"
-              >
-                Sign Up
-              </Link>
-            </span>
+            <div className={"Menudiv"}>
+              <div style={{ float: "right" }}>
+                <span className="Linkdiv">
+                  <Link
+                    className="nav-link"
+                    style={isActive(history, "/signin")}
+                    to="/signin"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    className="nav-link"
+                    style={isActive(history, "/signup")}
+                    to="/signup"
+                  >
+                    Sign Up
+                  </Link>
+                </span>
+              </div>
+              <Typography variant="h6" className="title">
+                News
+              </Typography>
+            </div>
           )}
-
           {history.isLoggedIn && (
-            <div>
-              <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-              >
-                <SettingsIcon />
-              </Button>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>
-                  <>
-                    <span className="Linkdiv">
-                      <Link
-                        className="nav-link"
-                        style={
-                          (isActive(history, "/changepassword"),
-                          { cursor: "pointer", color: "Black" })
-                        }
-                        to="/changepassword"
-                      >
-                        Change Password
-                      </Link>
-                    </span>
-                  </>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <>
-                    <span>
-                      <ul>
-                        <li className="nav-item">
-                          <a
-                            href="/signin"
+            <div className={"Menudiv"}>
+              <div style={{ float: "right" }}>
+                <span className="Linkdiv">
+                  <Link
+                    className="nav-link"
+                    style={isActive(history, "/profile")}
+                    to="/profile"
+                  >
+                    Profile
+                  </Link>
+                </span>
+                <span>
+                  <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                  >
+                    <SettingsIcon />
+                  </Button>
+
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>
+                      <>
+                        <span className="Linkdiv">
+                          <Link
                             className="nav-link"
                             style={
-                              (isActive(history, "/profile"),
+                              (isActive(history, "/language"),
                               { cursor: "pointer", color: "Black" })
                             }
-                            onClick={() =>
-                              signout(() => {
-                                history.push("/signin");
-                              })
-                            }
+                            to="/language"
                           >
-                            Sign out
-                          </a>
-                        </li>
-                      </ul>
-                    </span>
-                  </>
-                </MenuItem>
-              </Menu>
+                            Change Language
+                          </Link>
+                        </span>
+                      </>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <>
+                        <span className="Linkdiv">
+                          <Link
+                            className="nav-link"
+                            style={
+                              (isActive(history, "/category"),
+                              { cursor: "pointer", color: "Black" })
+                            }
+                            to="/category"
+                          >
+                            Change Category
+                          </Link>
+                        </span>
+                      </>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <>
+                        <span className="Linkdiv">
+                          <Link
+                            className="nav-link"
+                            style={
+                              (isActive(history, "/changepassword"),
+                              { cursor: "pointer", color: "Black" })
+                            }
+                            to="/changepassword"
+                          >
+                            Change Password
+                          </Link>
+                        </span>
+                      </>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <>
+                        <span>
+                          <ul>
+                            <li className="nav-item">
+                              <a
+                                href="/signin"
+                                className="nav-link"
+                                style={
+                                  (isActive(history, "/profile"),
+                                  { cursor: "pointer", color: "Black" })
+                                }
+                                onClick={() =>
+                                  signout(() => {
+                                    history.push("/signin");
+                                  })
+                                }
+                              >
+                                Sign out
+                              </a>
+                            </li>
+                          </ul>
+                        </span>
+                      </>
+                    </MenuItem>
+                  </Menu>
+                </span>
+              </div>
+              <Typography variant="h6" className="title">
+                News
+              </Typography>
             </div>
           )}
         </Toolbar>

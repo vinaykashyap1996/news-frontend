@@ -5,9 +5,13 @@
 .MuiTypography-h6 {
   margin: 0 auto !important;
 }
-.Linkdiv {
-  float: right;
+.Menudiv {
+  width: 100%;
 }
+.title {
+  text-align: center !important;
+}
+
 .Linkdiv .nav-link {
   padding: 10px;
   text-decoration: none;
@@ -31,4 +35,7 @@ ul {
 }
 .MuiButton-root {
   color: #fff !important;
+}
+
+@media only screen and (max-width: 600px) {
 }

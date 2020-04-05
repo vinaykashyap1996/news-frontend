@@ -8,12 +8,16 @@ import password from "./forgot-password/forgotpassword";
 import Profile from "./profile/profile";
 import Resetpassword from "./reset-password/resetPassword";
 import Changepassword from "./change-password/changepassword";
+import Reportbug from "./Reportbug/reportbug";
+import Language from "./Language/language";
+import Category from "./Category/category";
 
 class MainRouter extends React.Component {
   state = {
     isLoggedIn: sessionStorage.getItem("userID") ? true : false
   };
   onLogin = () => {
+    console.log("before", this.state.isLoggedIn);
     this.setState({
       isLoggedIn: true
     });
@@ -24,19 +28,26 @@ class MainRouter extends React.Component {
         <Menu isLoggedIn={this.state.isLoggedIn} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/signup" component={Signup} />
+          <Route
+            exact
+            path="/signup"
+            component={() => <Signup onLogin={this.onLogin} />}
+          />
           <Route
             exact
             path="/signin"
             component={() => <Signin onLogin={this.onLogin} />}
           />
           <Route exact path="/forgotpassword" component={password} />
+          <ProtectedRoute exact path="/language" component={Language} />
+          <ProtectedRoute exact path="/category" component={Category} />
           <ProtectedRoute exact path="/profile" component={Profile} />
           <ProtectedRoute
             exact
             path="/changepassword"
             component={Changepassword}
           />
+          <ProtectedRoute exact path="/report/:newsId" component={Reportbug} />
           <Route exact path="/reset/:token" component={Resetpassword} />
         </Switch>
       </div>

@@ -11,7 +11,7 @@
   align-items: center;
   padding: 55px;
   background-color: rgba(19, 35, 47, 0.9);
-  color: white;
+  color: #fff;
 }
 
 .profileLayout .card {
@@ -42,9 +42,17 @@
 .profileLayout .buttoncontainer {
   padding: 15px 0 0 0;
 }
+.profileLayout .reportbutton {
+  background-color: none;
+}
 
 .profileLayout .MuiSlider-root {
-  color: black;
+  color: #fff;
+  background-color: none;
+  margin-top: 7%;
+}
+.profileLayout .PrivateValueLabel-label-161 {
+  color: black !important;
 }
 
 .profileLayout .button {
@@ -82,4 +90,19 @@
 
 .MuiCardContent-root {
   padding: 0 !important;
+}
+.button-right {
+  margin-left: 86% !important;
+  size: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+  .ProfileContainer .profileLayout {
+    padding: 5px;
+    width: 100%;
+  }
+  .profileLayout .card {
+    height: 500px;
+    max-width: none;
+  }
 }
