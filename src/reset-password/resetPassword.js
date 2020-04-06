@@ -47,6 +47,7 @@ class Reset extends Component {
           <div>
             <TextField
               className={"textField"}
+              type="Password"
               label="Password"
               margin="normal"
               variant="outlined"
