@@ -250,31 +250,33 @@ const Profile = memo(() => {
             />
           </div>
         </div>
-        {currentNewsIndex !== 0 && (
-          <div className="button-left">
+        <div className="buttongroup">
+          {currentNewsIndex !== 0 && (
+            <div className="button-left">
+              <label htmlFor="contained-button-file">
+                <Button
+                  variant="contained"
+                  component="span"
+                  className={"button"}
+                  onClick={() => backButton()}
+                >
+                  Back
+                </Button>
+              </label>
+            </div>
+          )}
+          <div>
             <label htmlFor="contained-button-file">
               <Button
                 variant="contained"
                 component="span"
                 className={"button"}
-                onClick={() => backButton()}
+                onClick={() => nextButton()}
               >
-                Back
+                Next
               </Button>
             </label>
           </div>
-        )}
-        <div>
-          <label htmlFor="contained-button-file">
-            <Button
-              variant="contained"
-              component="span"
-              className={"button"}
-              onClick={() => nextButton()}
-            >
-              Next
-            </Button>
-          </label>
         </div>
       </div>
     </div>

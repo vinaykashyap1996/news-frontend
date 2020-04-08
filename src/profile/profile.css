@@ -51,10 +51,12 @@
   background-color: none;
   margin-top: 7%;
 }
-.profileLayout .PrivateValueLabel-label-161 {
+.profileLayout .MuiSlider-root .MuiSlider-valueLabel span span {
   color: black !important;
 }
-
+/* .profileLayout[className*="PrivateValueLabel-label-/0-9/d"] {
+  color: black !important;
+} */
 .profileLayout .button {
   float: right;
   background-color: #1ab188;
@@ -71,7 +73,7 @@
 }
 
 .button-right {
-  align-items: right;
+  text-align: right;
 }
 
 .profileLayout .card {
@@ -91,12 +93,11 @@
 .MuiCardContent-root {
   padding: 0 !important;
 }
-.button-right {
-  margin-left: 86% !important;
-  size: 12px;
-}
 
 @media only screen and (max-width: 600px) {
+  .ProfileContainer {
+    margin: 10px 20px;
+  }
   .ProfileContainer .profileLayout {
     padding: 5px;
     width: 100%;
@@ -104,5 +105,19 @@
   .profileLayout .card {
     height: 500px;
     max-width: none;
+  }
+  .profileLayout .buttoncontainer {
+    padding: 20px;
+  }
+  .profileLayout .MuiTypography-gutterBottom {
+    margin-bottom: 20px;
+  }
+  .profileLayout .button-left {
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+  .profileLayout .button {
+    margin-bottom: 10px;
+    margin-right: 10px;
   }
 }

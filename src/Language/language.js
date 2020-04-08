@@ -60,12 +60,13 @@ function Language() {
   };
   const clickhandler = () => {
     let userID = sessionStorage.getItem("userID");
+    console.log(language);
     const body = {
       userId: userID,
       language: language
     };
     axios
-      .post(process.env.REACT_APP_BASE_URL + "user/categoryupdate", body)
+      .post(process.env.REACT_APP_BASE_URL + "user/languageupdate", body)
       .then(response => {
         if (response.data.status === 200) {
           setErrorMessage(response.data.message);
@@ -91,9 +92,6 @@ function Language() {
             label="Native select"
             value={language}
             onChange={handleChange}
-            SelectProps={{
-              native: true
-            }}
             helperText="Please select your Language"
             variant="outlined"
           >

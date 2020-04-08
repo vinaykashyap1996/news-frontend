@@ -60,9 +60,6 @@ function Category() {
             label="Native select"
             value={category}
             onChange={handleChange}
-            SelectProps={{
-              native: true
-            }}
             helperText="Please News Category"
             variant="outlined"
           >
