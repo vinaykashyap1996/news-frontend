@@ -1,6 +1,5 @@
 import React, { useState, memo } from "react";
 import "./reportbug.css";
-import swal from "sweetalert";
 import { useToasts } from "react-toast-notifications";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
@@ -19,10 +18,8 @@ const ReportBug = memo(() => {
   let history = useHistory();
   let params = useParams();
 
-  const onSubmit = event => {
-    event.preventDefault();
+  const onSubmit = () => {
     let userID = sessionStorage.getItem("userID");
-    const { feedback } = this.state;
     const body = {
       userId: userID,
       newsId: params.newsId,
@@ -33,7 +30,10 @@ const ReportBug = memo(() => {
       .then(response => {
         if (response.data.status === 200) {
           setMessage(response.data.message);
-          swal(message);
+          addToast(response.data.message, {
+            appearance: "success",
+            autoDismiss: true
+          });
           history.push("/profile");
         } else {
           setError(response.data.message);

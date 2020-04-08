@@ -17,7 +17,6 @@ class MainRouter extends React.Component {
     isLoggedIn: sessionStorage.getItem("userID") ? true : false
   };
   onLogin = () => {
-    console.log("before", this.state.isLoggedIn);
     this.setState({
       isLoggedIn: true
     });

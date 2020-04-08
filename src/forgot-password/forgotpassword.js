@@ -23,7 +23,7 @@ const ForgotPassword = memo(() => {
     if (message) {
       setError(message);
       setSuccess(false);
-      addToast(error, {
+      addToast(message, {
         appearance: "error",
         autoDismiss: true
       });
@@ -40,12 +40,15 @@ const ForgotPassword = memo(() => {
         .then(response => {
           if (response.status === 200) {
             setMessage(response.data.message);
-            swal(message);
+            addToast(response.data.message, {
+              appearance: "success",
+              autoDismiss: true
+            });
             setSuccess(true);
           } else {
             setError(response.data.message);
             setSuccess(false);
-            addToast(error, {
+            addToast(response.data.message, {
               appearance: "error",
               autoDismiss: true
             });

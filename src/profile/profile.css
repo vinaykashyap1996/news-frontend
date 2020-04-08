@@ -47,7 +47,7 @@
 }
 
 .profileLayout .MuiSlider-root {
-  color: #fff;
+  color: #fff !important;
   background-color: none;
   margin-top: 7%;
 }

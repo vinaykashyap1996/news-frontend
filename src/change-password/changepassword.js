@@ -1,5 +1,4 @@
 import React, { useState, memo } from "react";
-import swal from "sweetalert";
 import { useToasts } from "react-toast-notifications";
 import axios from "axios";
 import "./changepassword.css";
@@ -22,8 +21,7 @@ const ChangePassword = memo(() => {
     setNewPassword(event.target.value);
   };
   let history = useHistory();
-  const onSubmit = event => {
-    event.preventDefault();
+  const onSubmit = () => {
     let userID = sessionStorage.getItem("userID");
     const body = {
       userId: userID,
@@ -35,11 +33,14 @@ const ChangePassword = memo(() => {
       .then(response => {
         if (response.data.status === 200) {
           setMessage(response.data.message);
-          swal(message);
+          addToast(response.data.message, {
+            appearance: "error",
+            autoDismiss: true
+          });
           history.push("/profile");
         } else {
           setError(response.data.message);
-          addToast(error, {
+          addToast(response.data.message, {
             appearance: "error",
             autoDismiss: true
           });

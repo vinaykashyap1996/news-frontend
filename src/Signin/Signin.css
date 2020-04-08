@@ -51,7 +51,9 @@
   background-color: #1ab188;
   border: none;
 }
-
+.signinformlayout .passwordcontainer {
+  padding: 2px;
+}
 .signinformlayout .MuiInputLabel-outlined {
   transform: translate(14px, 14px) scale(1);
 }

@@ -10,6 +10,15 @@
   padding: 20px;
   background-color: rgba(19, 35, 47, 0.9);
 }
+.signuplayout .firstnamediv {
+  padding: 4px;
+}
+.signuplayout .emailcontainer {
+  padding: 2px;
+}
+.signuplayout .passwordcontainer {
+  padding: 2px;
+}
 
 .signuplayout .title {
   color: #fff;

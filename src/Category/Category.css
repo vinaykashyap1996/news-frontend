@@ -7,7 +7,7 @@
 .languageincontainer .languageinlayout {
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 22px;
   background-color: rgba(19, 35, 47, 0.9);
 }
 .languageinlayout .MuiOutlinedInput-input {

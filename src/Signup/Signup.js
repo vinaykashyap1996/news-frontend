@@ -1,6 +1,5 @@
 import React, { useState, memo } from "react";
 import { useToasts } from "react-toast-notifications";
-import swal from "sweetalert";
 import "./Signup.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
@@ -33,7 +32,7 @@ const Signup = memo(props => {
     }
     if (message) {
       setErrorMessage(message);
-      addToast(errorMessage, {
+      addToast(message, {
         appearance: "error",
         autoDismiss: true
       });
@@ -59,11 +58,13 @@ const Signup = memo(props => {
             sessionStorage.setItem("userID", response.data.result._id);
             props.onLogin();
             history.push("/language");
-            // window.location.reload();
-            swal(errorMessage);
+            addToast(response.data.message, {
+              appearance: "success",
+              autoDismiss: true
+            });
           } else {
             setErrorMessage(response.data.message);
-            addToast(errorMessage, {
+            addToast(response.data.message, {
               appearance: "error",
               autoDismiss: true
             });
@@ -81,7 +82,7 @@ const Signup = memo(props => {
             Already have an account?
           </Link>
         </p>
-        <div>
+        <div className="firstnamediv">
           <TextField
             className={"textField"}
             label="Firstname"

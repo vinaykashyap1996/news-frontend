@@ -12,7 +12,7 @@ const Signin = memo(props => {
   const { addToast } = useToasts();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
   const emailhandleChange = name => (event, value) => {
     setEmail(event.target.value);
   };
@@ -26,11 +26,10 @@ const Signin = memo(props => {
     }
     if (message) {
       setErrorMessage(message);
-      addToast(errorMessage, {
+      addToast(message, {
         appearance: "error",
         autoDismiss: true
       });
-      // swal(errorMessage);
       return false;
     }
     return true;
@@ -48,17 +47,15 @@ const Signin = memo(props => {
         .then(response => {
           if (response.data.status === 200) {
             setErrorMessage(response.data.message);
-            swal(errorMessage);
             sessionStorage.setItem("userID", response.data.userData._id);
             props.onLogin();
             history.push("/profile");
           } else {
             setErrorMessage(response.data.message);
-            addToast(errorMessage, {
+            addToast(response.data.message, {
               appearance: "error",
               autoDismiss: true
             });
-            // swal(errorMessage);
           }
         });
     }
@@ -86,7 +83,7 @@ const Signin = memo(props => {
             value={Email}
           />
         </div>
-        <div>
+        <div className="passwordcontainer">
           <TextField
             className={"textField"}
             type="Password"

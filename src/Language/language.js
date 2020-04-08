@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
-
 import axios from "axios";
-import swal from "sweetalert";
-
 import "./language.css";
 import Button from "@material-ui/core/Button";
 
@@ -19,7 +15,7 @@ const languages = [
   { value: "de", label: "German" },
   { value: "pt", label: "Portuguese" },
   { value: "id", label: "Indonesian" },
-  { value: "tl", label: "unknown" },
+  { value: "tl", label: "Tagalog" },
   { value: "fr", label: "French" },
   { value: "ar", label: "Arabic" },
   { value: "ru", label: "Russian" },
@@ -38,9 +34,9 @@ const languages = [
   { value: "no", label: "Norwegian" },
   { value: "sw", label: "Swahili" }
 ];
+languages.sort((a, b) => (a.label > b.label ? 1 : -1));
 
 function Language() {
-  const { addToast } = useToasts();
   const [errorMessage, setErrorMessage] = useState("");
 
   const [language, setLanguage] = useState("");
@@ -49,7 +45,19 @@ function Language() {
     setLanguage(event.target.value);
   };
   let history = useHistory();
-
+  const getUserSelectedLanguage = () => {
+    let userID = sessionStorage.getItem("userID");
+    axios
+      .get(process.env.REACT_APP_BASE_URL + "user/userdetails?userId=" + userID)
+      .then(response => {
+        if (response.data.status === 200) {
+          setLanguage(response.data.results[0].language);
+          setErrorMessage(response.data.message);
+        } else {
+          setErrorMessage(response.data.message);
+        }
+      });
+  };
   const clickhandler = () => {
     let userID = sessionStorage.getItem("userID");
     const body = {
@@ -61,17 +69,19 @@ function Language() {
       .then(response => {
         if (response.data.status === 200) {
           setErrorMessage(response.data.message);
-          swal(errorMessage);
-          history.push("/category");
+          if (history.location.query) {
+            history.push("/profile");
+          } else {
+            history.push("/category");
+          }
         } else {
           setErrorMessage(response.data.message);
-          addToast(errorMessage, {
-            appearance: "error",
-            autoDismiss: true
-          });
         }
       });
   };
+  useEffect(() => {
+    getUserSelectedLanguage();
+  }, []);
   return (
     <div className={"languageincontainer"}>
       <div className={"languageinlayout"}>
@@ -81,16 +91,17 @@ function Language() {
             label="Native select"
             value={language}
             onChange={handleChange}
+            SelectProps={{
+              native: true
+            }}
             helperText="Please select your Language"
             variant="outlined"
           >
-            {languages
-              .map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))
-              .sort()}
+            {languages.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </TextField>
         </div>
         <div>

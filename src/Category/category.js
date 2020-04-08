@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
-
 import axios from "axios";
-import swal from "sweetalert";
 import "./Category.css";
 import Button from "@material-ui/core/Button";
 
@@ -13,15 +10,27 @@ const categories = [
   { value: "social media", label: "Social Media" },
   { value: "news post", label: "News Post" }
 ];
-
+categories.sort((a, b) => (a.label > b.label ? 1 : -1));
 function Category() {
-  const { addToast } = useToasts();
   const [category, setCategory] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const handleChange = event => {
     setCategory(event.target.value);
   };
   let history = useHistory();
+  const getUserSelectedCategory = () => {
+    let userID = sessionStorage.getItem("userID");
+    axios
+      .get(process.env.REACT_APP_BASE_URL + "user/userdetails?userId=" + userID)
+      .then(response => {
+        if (response.data.status === 200) {
+          setCategory(response.data.results[0].category);
+          setErrorMessage(response.data.message);
+        } else {
+          setErrorMessage(response.data.message);
+        }
+      });
+  };
   const clickhandler = () => {
     let userID = sessionStorage.getItem("userID");
     const body = {
@@ -33,17 +42,15 @@ function Category() {
       .then(response => {
         if (response.data.status === 200) {
           setErrorMessage(response.data.message);
-          swal(errorMessage);
           history.push("/profile");
         } else {
           setErrorMessage(response.data.message);
-          addToast(errorMessage, {
-            appearance: "error",
-            autoDismiss: true
-          });
         }
       });
   };
+  useEffect(() => {
+    getUserSelectedCategory();
+  }, []);
   return (
     <div className={"languageincontainer"}>
       <div className={"languageinlayout"}>
@@ -53,6 +60,9 @@ function Category() {
             label="Native select"
             value={category}
             onChange={handleChange}
+            SelectProps={{
+              native: true
+            }}
             helperText="Please News Category"
             variant="outlined"
           >
