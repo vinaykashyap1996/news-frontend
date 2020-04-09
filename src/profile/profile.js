@@ -12,8 +12,11 @@ import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
 import BugReportIcon from "@material-ui/icons/BugReport";
 import axios from "axios";
+import { useToasts } from "react-toast-notifications";
 
 const Profile = memo(() => {
+  const { addToast } = useToasts();
+
   const [firstLetter, setFirstLetter] = useState("");
   const [allNewsIDs, setAllNewsIDs] = useState([]);
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
@@ -92,12 +95,23 @@ const Profile = memo(() => {
           if (response.status !== 200) {
             setErrorMessage(response.data.message);
           } else {
-            let allNewsId = [...response.data.newsIds];
-            let allSessionData = [...response.data.sessionData];
-            setAllNewsIDs(allNewsId || []);
-            let newsIndex =
-              allSessionData.length > 0 ? allSessionData.length - 1 : 0;
-            getNewsHandler(newsIndex, allNewsId);
+            if (response.data.newsIds.length > 0) {
+              let allNewsId = [...response.data.newsIds] || [];
+              let allSessionData =
+                response.data.sessionData &&
+                response.data.sessionData.length > 0
+                  ? [...response.data.sessionData]
+                  : [];
+              setAllNewsIDs(allNewsId || []);
+              let newsIndex =
+                allSessionData.length > 0 ? allSessionData.length - 1 : 0;
+              getNewsHandler(newsIndex, allNewsId);
+            } else {
+              addToast("Please Select Another Category/Language", {
+                appearance: "error",
+                autoDismiss: true
+              });
+            }
           }
         });
     }
@@ -265,18 +279,20 @@ const Profile = memo(() => {
               </label>
             </div>
           )}
-          <div>
-            <label htmlFor="contained-button-file">
-              <Button
-                variant="contained"
-                component="span"
-                className={"button"}
-                onClick={() => nextButton()}
-              >
-                Next
-              </Button>
-            </label>
-          </div>
+          {currentNewsIndex !== allNewsIDs.length - 1 && (
+            <div>
+              <label htmlFor="contained-button-file">
+                <Button
+                  variant="contained"
+                  component="span"
+                  className={"button"}
+                  onClick={() => nextButton()}
+                >
+                  Next
+                </Button>
+              </label>
+            </div>
+          )}
         </div>
       </div>
     </div>

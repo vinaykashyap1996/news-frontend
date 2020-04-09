@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./language.css";
 import Button from "@material-ui/core/Button";
-
 import TextField from "@material-ui/core/TextField";
 
 const languages = [
@@ -36,7 +35,7 @@ const languages = [
 ];
 languages.sort((a, b) => (a.label > b.label ? 1 : -1));
 
-function Language() {
+const Language = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [language, setLanguage] = useState("");
@@ -60,7 +59,6 @@ function Language() {
   };
   const clickhandler = () => {
     let userID = sessionStorage.getItem("userID");
-    console.log(language);
     const body = {
       userId: userID,
       language: language
@@ -92,11 +90,15 @@ function Language() {
             label="Native select"
             value={language}
             onChange={handleChange}
-            helperText="Please select your Language"
+            helperText="Please Select Your Language"
             variant="outlined"
           >
             {languages.map(option => (
-              <option key={option.value} value={option.value}>
+              <option
+                key={option.value}
+                value={option.value}
+                style={{ padding: "10px" }}
+              >
                 {option.label}
               </option>
             ))}
@@ -104,12 +106,12 @@ function Language() {
         </div>
         <div>
           <Button variant="outlined" color="secondary" onClick={clickhandler}>
-            select
+            Confirm
           </Button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Language;

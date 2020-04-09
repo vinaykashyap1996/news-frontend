@@ -59,3 +59,6 @@
 .languageinlayout .MuiFormHelperText-root {
   color: #fff !important;
 }
+.languageinlayout .MuiList-padding {
+  padding: 20px !important;
+}

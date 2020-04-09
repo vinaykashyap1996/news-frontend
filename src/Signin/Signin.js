@@ -1,5 +1,4 @@
 import React, { useState, memo } from "react";
-import swal from "sweetalert";
 import { withRouter, useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import axios from "axios";

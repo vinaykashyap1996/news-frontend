@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./Category.css";
 import Button from "@material-ui/core/Button";
-
 import TextField from "@material-ui/core/TextField";
 
 const categories = [
@@ -18,6 +17,7 @@ function Category() {
     setCategory(event.target.value);
   };
   let history = useHistory();
+
   const getUserSelectedCategory = () => {
     let userID = sessionStorage.getItem("userID");
     axios
@@ -31,6 +31,7 @@ function Category() {
         }
       });
   };
+
   const clickhandler = () => {
     let userID = sessionStorage.getItem("userID");
     const body = {
@@ -48,9 +49,11 @@ function Category() {
         }
       });
   };
+
   useEffect(() => {
     getUserSelectedCategory();
   }, []);
+
   return (
     <div className={"languageincontainer"}>
       <div className={"languageinlayout"}>
@@ -64,7 +67,11 @@ function Category() {
             variant="outlined"
           >
             {categories.map(option => (
-              <option key={option.value} value={option.value}>
+              <option
+                key={option.value}
+                value={option.value}
+                style={{ padding: "10px" }}
+              >
                 {option.label}
               </option>
             ))}
@@ -72,7 +79,7 @@ function Category() {
         </div>
         <div>
           <Button variant="outlined" color="secondary" onClick={clickhandler}>
-            select
+            confirm
           </Button>
         </div>
       </div>
