@@ -1,5 +1,5 @@
 import React from "react";
-import Mainrouter from "./Mainrouter";
+import Mainrouter from "./mainrouter";
 import { BrowserRouter } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 

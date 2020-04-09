@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import "./Category.css";
+import "./category.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
