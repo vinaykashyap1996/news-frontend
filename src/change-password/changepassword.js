@@ -83,7 +83,7 @@ const ChangePassword = memo(() => {
         </div>
         <div className="forgotpassword">
           <Link className="nav-link" to="/forgotpassword">
-            Cant remember your password ?
+            Can't remember your password ?
           </Link>
         </div>
       </div>

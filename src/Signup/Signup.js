@@ -1,6 +1,6 @@
 import React, { useState, memo } from "react";
 import { useToasts } from "react-toast-notifications";
-import "./Signup.css";
+import "./signup.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";

@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Home from "./Home/Home";
-import Menu from "./Menu/Menu";
-import Signup from "./Signup/Signup";
-import Signin from "./Signin/Signin";
+import Home from "./home/home";
+import Menu from "./menu/menu";
+import Signup from "./signup/signup";
+import Signin from "./signin/signin";
 import password from "./forgot-password/forgotpassword";
 import Profile from "./profile/profile";
 import Resetpassword from "./reset-password/resetPassword";
 import Changepassword from "./change-password/changepassword";
-import Reportbug from "./Reportbug/reportbug";
-import Language from "./Language/language";
-import Category from "./Category/category";
+import Reportbug from "./reportbug/reportbug";
+import Language from "./language/language";
+import Category from "./category/category";
 
 class MainRouter extends React.Component {
   state = {
