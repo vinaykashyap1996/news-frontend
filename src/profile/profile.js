@@ -205,9 +205,6 @@ const Profile = memo(() => {
               <BugReportIcon />
             </Button>
           </Tooltip>
-          {/* <Button aria-controls="simple-menu" aria-haspopup="true">
-            <GTranslateIcon className={"languagebutton"} />
-          </Button> */}
         </div>
         <Card className={"card"}>
           <CardHeader
@@ -235,14 +232,16 @@ const Profile = memo(() => {
         <div className="buttoncontainer">
           <div>
             <Typography id="discrete-slider-custom" gutterBottom>
-              Believability Index (BI)
+              Plausibility
             </Typography>
             <div></div>
             <Slider
               className="slider"
               defaultValue={0}
               aria-labelledby="discrete-slider-custom"
-              step={10}
+              step={1}
+              min={0}
+              max={4}
               onChange={handleBindexChange("Bindex")}
               valueLabelDisplay="on"
               value={bIndex}
@@ -250,14 +249,16 @@ const Profile = memo(() => {
           </div>
           <div>
             <Typography id="discrete-slider-custom" gutterBottom>
-              Prior Knowledge (PK)
+              Prior Knowledge
             </Typography>
             <span />
             <Slider
               className="slider"
               defaultValue={0}
               aria-labelledby="discrete-slider-custom"
-              step={10}
+              step={1}
+              min={0}
+              max={4}
               onChange={handlePindexChange("Pindex")}
               valueLabelDisplay="on"
               value={pIndex}

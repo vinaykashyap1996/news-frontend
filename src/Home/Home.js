@@ -10,7 +10,7 @@ const Home = memo(() => {
       {
         <button
           className="button"
-          onClick={history => {
+          onClick={() => {
             history.push("/signup");
           }}
         >
