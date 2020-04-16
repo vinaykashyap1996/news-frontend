@@ -16,7 +16,6 @@ import { useToasts } from "react-toast-notifications";
 
 const Profile = memo(() => {
   const { addToast } = useToasts();
-
   const [firstLetter, setFirstLetter] = useState("");
   const [allNewsIDs, setAllNewsIDs] = useState([]);
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
@@ -81,7 +80,6 @@ const Profile = memo(() => {
   const handleOpen = () => {
     setOpen(true);
   };
-
   const getAllNewsIDsHandler = useCallback(() => {
     let storageUserID = sessionStorage.getItem("userID");
     if (allNewsIDs.length === 0) {
@@ -207,15 +205,6 @@ const Profile = memo(() => {
           </Tooltip>
         </div>
         <Card className={"card"}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="recipe" className={"avatar"}>
-                {firstLetter}
-              </Avatar>
-            }
-            title={srcName}
-            subheader={publishedDate}
-          />
           <CardContent className="MuiCardContent-root:last-child ">
             <CardContent>
               <iframe
