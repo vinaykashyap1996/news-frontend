@@ -86,12 +86,16 @@
 }
 
 .iframe {
-  width: 455px !important;
-  height: 500px !important;
+  width: 557.23 !important;
+  height: 507px !important;
 }
 
 .MuiCardContent-root {
   padding: 0 !important;
+}
+
+.MuiIconButton-label {
+  color: #fff !important;
 }
 
 @media only screen and (max-width: 600px) {

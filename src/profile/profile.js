@@ -1,26 +1,26 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
-// import GTranslateIcon from "@material-ui/icons/GTranslate";
 import "./profile.css";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
 import BugReportIcon from "@material-ui/icons/BugReport";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 const Profile = memo(() => {
   const { addToast } = useToasts();
   const [firstLetter, setFirstLetter] = useState("");
   const [allNewsIDs, setAllNewsIDs] = useState([]);
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
-  const [pIndex, setPIndex] = useState(0);
-  const [bIndex, setBIndex] = useState(0);
+  const [pIndex, setPIndex] = useState("");
+  const [bIndex, setBIndex] = useState("");
   const [srcName, setSrcName] = useState("");
   const [srcURL, setSrcURL] = useState("");
   const [publishedDate, setPublishedDate] = useState("");
@@ -179,12 +179,13 @@ const Profile = memo(() => {
   const backButton = () => {
     getNewsHandler(currentNewsIndex - 1);
   };
-  const handlePindexChange = name => (e, value) => {
-    setPIndex(value);
+  const handlePindexChange = event => {
+    setPIndex(event.target.value);
   };
-  const handleBindexChange = name => (e, value) => {
-    setBIndex(value);
+  const handleBindexChange = event => {
+    setBIndex(event.target.value);
   };
+
   return (
     <div className="ProfileContainer">
       <div className="profileLayout">
@@ -209,8 +210,8 @@ const Profile = memo(() => {
             <CardContent>
               <iframe
                 is={bypassCheck()}
-                width="455px"
-                height="500px"
+                width="557.23px"
+                height="507px"
                 title={srcURL}
                 key={srcURL}
                 src={srcURL}
@@ -219,39 +220,97 @@ const Profile = memo(() => {
           </CardContent>
         </Card>
         <div className="buttoncontainer">
-          <div>
+          <div style={{ marginBottom: "12px" }}>
             <Typography id="discrete-slider-custom" gutterBottom>
               Plausibility
             </Typography>
-            <div></div>
-            <Slider
-              className="slider"
-              defaultValue={0}
-              aria-labelledby="discrete-slider-custom"
-              step={1}
-              min={0}
-              max={4}
-              onChange={handleBindexChange("Bindex")}
-              valueLabelDisplay="on"
-              value={bIndex}
-            />
+            <div style={{ marginBottom: "12px" }}></div>
+            <FormControl component="fieldset">
+              <RadioGroup
+                row
+                aria-label="position"
+                name="position"
+                value={bIndex.toString()}
+                onClick={handleBindexChange}
+              >
+                <FormControlLabel
+                  value="0"
+                  control={<Radio />}
+                  label="very unsatisfied"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="1"
+                  control={<Radio />}
+                  label="unsatisfied"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="2"
+                  control={<Radio />}
+                  label="neutral"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="3"
+                  control={<Radio />}
+                  label="satisfied"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="4"
+                  control={<Radio />}
+                  label="very satisfied"
+                  labelPlacement="top"
+                />
+              </RadioGroup>
+            </FormControl>
           </div>
-          <div>
+          <div style={{ marginBottom: "12px" }}>
             <Typography id="discrete-slider-custom" gutterBottom>
-              Prior Knowledge
+              Do you have prior knowledge about this article?
             </Typography>
-            <span />
-            <Slider
-              className="slider"
-              defaultValue={0}
-              aria-labelledby="discrete-slider-custom"
-              step={1}
-              min={0}
-              max={4}
-              onChange={handlePindexChange("Pindex")}
-              valueLabelDisplay="on"
-              value={pIndex}
-            />
+            <div style={{ marginBottom: "12px" }}></div>
+            <FormControl component="fieldset">
+              <RadioGroup
+                row
+                aria-label="position"
+                name="position"
+                value={pIndex.toString()}
+                onClick={handlePindexChange}
+              >
+                <FormControlLabel
+                  value="0"
+                  control={<Radio />}
+                  label="very unsatisfied"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="1"
+                  control={<Radio />}
+                  label="unsatisfied"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="2"
+                  control={<Radio />}
+                  label="neutral"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="3"
+                  control={<Radio />}
+                  label="satisfied"
+                  labelPlacement="top"
+                />
+                <FormControlLabel
+                  value="4"
+                  control={<Radio />}
+                  label="very satisfied"
+                  labelPlacement="top"
+                />
+              </RadioGroup>
+            </FormControl>
           </div>
         </div>
         <div className="buttongroup">

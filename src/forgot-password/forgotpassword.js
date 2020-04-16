@@ -1,9 +1,8 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { Redirect } from "react-router-dom";
 import "./forgotpassword.css";
 import axios from "axios";
-import swal from "sweetalert";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 const ForgotPassword = memo(() => {
