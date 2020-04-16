@@ -5,34 +5,7 @@ import "./language.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-const languages = [
-  { value: "en", label: "English" },
-  { value: "ta", label: "Tamil" },
-  { value: "es", label: "Spanish" },
-  { value: "ko", label: "Koren" },
-  { value: "it", label: "Italian" },
-  { value: "de", label: "German" },
-  { value: "pt", label: "Portuguese" },
-  { value: "id", label: "Indonesian" },
-  { value: "tl", label: "Tagalog" },
-  { value: "fr", label: "French" },
-  { value: "ar", label: "Arabic" },
-  { value: "ru", label: "Russian" },
-  { value: "nl", label: "Dutch" },
-  { value: "pl", label: "Polish" },
-  { value: "lt", label: "Lithuanian" },
-  { value: "fi", label: "Finnish" },
-  { value: "da", label: "Danish" },
-  { value: "hu", label: "Hungarian" },
-  { value: "uk", label: "Ukrainian" },
-  { value: "et", label: "Estonian" },
-  { value: "cs", label: "Czech" },
-  { value: "sv", label: "Swedish" },
-  { value: "sk", label: "Slovak" },
-  { value: "ro", label: "Romanian" },
-  { value: "no", label: "Norwegian" },
-  { value: "sw", label: "Swahili" }
-];
+const languages = [{ value: "en", label: "English" }];
 languages.sort((a, b) => (a.label > b.label ? 1 : -1));
 
 const Language = () => {
