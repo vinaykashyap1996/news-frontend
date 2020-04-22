@@ -6,15 +6,17 @@ import Signup from "./signup/signup";
 import Signin from "./signin/signin";
 import password from "./forgot-password/forgotpassword";
 import Profile from "./profile/profile";
+import Newprofile from "./newprofile/newprofile";
 import Resetpassword from "./reset-password/resetPassword";
 import Changepassword from "./change-password/changepassword";
 import Reportbug from "./reportbug/reportbug";
 import Language from "./language/language";
 import Category from "./category/category";
-
+import Task from "./task/task";
 class MainRouter extends React.Component {
   state = {
-    isLoggedIn: sessionStorage.getItem("userID") ? true : false
+    isLoggedIn: sessionStorage.getItem("userID") ? true : false,
+    Taskvalue: sessionStorage.getItem("Taskvalue")
   };
   onLogin = () => {
     this.setState({
@@ -37,10 +39,11 @@ class MainRouter extends React.Component {
             path="/signin"
             component={() => <Signin onLogin={this.onLogin} />}
           />
+          <Route exact path="/task" component={Task} />
           <Route exact path="/forgotpassword" component={password} />
           <ProtectedRoute exact path="/language" component={Language} />
           <ProtectedRoute exact path="/category" component={Category} />
-          <ProtectedRoute exact path="/profile" component={Profile} />
+          <ProfileRoute />
           <ProtectedRoute
             exact
             path="/changepassword"
@@ -68,5 +71,12 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
     }
   />
 );
+
+const ProfileRoute = () =>
+  sessionStorage.getItem("Taskvalue") !== "1" ? (
+    <ProtectedRoute exact path="/profile" component={Profile} />
+  ) : (
+    <ProtectedRoute exact path="/profile" component={Newprofile} />
+  );
 
 export default MainRouter;

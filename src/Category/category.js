@@ -6,8 +6,8 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
 const categories = [
-  { value: "social media", label: "Social Media" },
-  { value: "news post", label: "News Post" }
+  { value: "politics", label: "Politics" }
+  // { value: "news post", label: "News Post" }
 ];
 categories.sort((a, b) => (a.label > b.label ? 1 : -1));
 function Category() {

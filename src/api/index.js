@@ -10,5 +10,6 @@ export const isAuthenticate = () => {
 
 export const signout = next => {
   if (typeof window !== "undefined") sessionStorage.removeItem("userID");
+  if (typeof window !== "undefined") sessionStorage.removeItem("Taskvalue");
   next();
 };

@@ -47,6 +47,7 @@ const Signin = memo(props => {
           if (response.data.status === 200) {
             setErrorMessage(response.data.message);
             sessionStorage.setItem("userID", response.data.userData._id);
+            sessionStorage.setItem("Taskvalue", response.data.userData.task);
             props.onLogin();
             history.push("/profile");
           } else {

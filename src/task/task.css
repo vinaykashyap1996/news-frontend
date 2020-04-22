@@ -1,0 +1,76 @@
+.taskcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  padding: 36px;
+}
+
+.tasklayout {
+  float: left;
+  background: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  padding: 55px;
+  background-color: rgba(19, 35, 47, 0.9);
+  color: #fff;
+}
+
+.task2 {
+  float: right;
+  background: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  padding: 55px;
+  background-color: rgba(19, 35, 47, 0.9);
+  color: #fff;
+}
+
+.task2 .MuiButton-outlinedSecondary {
+  background-color: #1ab188;
+  width: 380px;
+  border: none;
+  margin-top: 7px;
+  padding: 7px 15px;
+  margin-bottom: 8px;
+  font-family: "Poppins", sans-serif;
+}
+.tasklayout .MuiButton-outlinedSecondary:hover {
+  background-color: #1ab188;
+  border: none;
+}
+
+.tasklayout .button {
+  float: right;
+  background-color: #1ab188;
+  color: #fff;
+}
+
+.tasklayout .button:hover {
+  background-color: #1ab188;
+  color: #fff;
+}
+
+.tasklayout .MuiButton-root {
+  font-family: "Poppins", sans-serif;
+}
+
+.task2 .MuiButton-outlinedSecondary:hover {
+  background-color: #1ab188;
+  border: none;
+}
+
+.task2 .button {
+  float: right;
+  background-color: #1ab188;
+  color: #fff;
+}
+
+.task2 .button:hover {
+  background-color: #1ab188;
+  color: #fff;
+}
+
+.task2 .MuiButton-root {
+  font-family: "Poppins", sans-serif;
+}

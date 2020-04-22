@@ -57,7 +57,7 @@ const Signup = memo(props => {
             setErrorMessage(response.data.message);
             sessionStorage.setItem("userID", response.data.result._id);
             props.onLogin();
-            history.push("/language");
+            history.push("/task");
             addToast(response.data.message, {
               appearance: "success",
               autoDismiss: true

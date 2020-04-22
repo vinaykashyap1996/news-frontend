@@ -59,17 +59,18 @@ const SimpleMenu = (history, isLoggedIn) => {
           {history.isLoggedIn && (
             <div className={"Menudiv"}>
               <div style={{ float: "right" }}>
-                {history.location.pathname !== "/profile" && (
-                  <span className="Linkdiv">
-                    <Link
-                      className="nav-link"
-                      style={isActive(history, "/profile")}
-                      to="/profile"
-                    >
-                      Profile
-                    </Link>
-                  </span>
-                )}
+                {history.location.pathname !== "/profile" &&
+                  history.location.pathname !== "/task" && (
+                    <span className="Linkdiv">
+                      <Link
+                        className="nav-link"
+                        style={isActive(history, "/profile")}
+                        to="/profile"
+                      >
+                        Profile
+                      </Link>
+                    </span>
+                  )}
                 <span>
                   <Button
                     aria-controls="simple-menu"
@@ -86,44 +87,46 @@ const SimpleMenu = (history, isLoggedIn) => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                   >
-                    {history.location.pathname !== "/language" && (
-                      <MenuItem id="lang" onClick={handleClose}>
-                        <>
-                          <Link
-                            className="nav-link"
-                            style={
-                              (isActive(history, "/language"),
-                              {
-                                cursor: "pointer",
-                                color: "Black"
-                              })
-                            }
-                            to={{ pathname: "/language", query: "lang" }}
-                          >
-                            Change Language
-                          </Link>
-                        </>
-                      </MenuItem>
-                    )}
-                    {history.location.pathname !== "/category" && (
-                      <MenuItem id="cate" onClick={handleClose}>
-                        <>
-                          <Link
-                            className="nav-link"
-                            style={
-                              (isActive(history, "/category"),
-                              {
-                                cursor: "pointer",
-                                color: "Black"
-                              })
-                            }
-                            to="/category"
-                          >
-                            Change Category
-                          </Link>
-                        </>
-                      </MenuItem>
-                    )}
+                    {history.location.pathname !== "/language" &&
+                      history.location.pathname !== "/task" && (
+                        <MenuItem id="lang" onClick={handleClose}>
+                          <>
+                            <Link
+                              className="nav-link"
+                              style={
+                                (isActive(history, "/language"),
+                                {
+                                  cursor: "pointer",
+                                  color: "Black"
+                                })
+                              }
+                              to={{ pathname: "/language", query: "lang" }}
+                            >
+                              Change Language
+                            </Link>
+                          </>
+                        </MenuItem>
+                      )}
+                    {history.location.pathname !== "/category" &&
+                      history.location.pathname !== "/task" && (
+                        <MenuItem id="cate" onClick={handleClose}>
+                          <>
+                            <Link
+                              className="nav-link"
+                              style={
+                                (isActive(history, "/category"),
+                                {
+                                  cursor: "pointer",
+                                  color: "Black"
+                                })
+                              }
+                              to="/category"
+                            >
+                              Change Category
+                            </Link>
+                          </>
+                        </MenuItem>
+                      )}
                     {history.location.pathname !== "/changepassword" && (
                       <MenuItem id="change" onClick={handleClose}>
                         <>

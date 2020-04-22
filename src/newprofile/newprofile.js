@@ -1,8 +1,10 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
-import "./profile.css";
+import "./newprofile.css";
 import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -14,15 +16,15 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
-const Profile = memo(() => {
+const newProfile = memo(() => {
   const { addToast } = useToasts();
   const [firstLetter, setFirstLetter] = useState("");
   const [allNewsIDs, setAllNewsIDs] = useState([]);
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
   const [pIndex, setPIndex] = useState("");
   const [bIndex, setBIndex] = useState("");
-  const [srcName, setSrcName] = useState("");
-  const [srcURL, setSrcURL] = useState("");
+  const [srcHeadline, setSrcHeadline] = useState("");
+  const [srcText, setText] = useState("");
   const [publishedDate, setPublishedDate] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentNewsId, setCurrentNewsId] = useState(0);
@@ -55,7 +57,7 @@ const Profile = memo(() => {
                   ? new Date(IndivdualNews[0].published_date).toDateString()
                   : ""
               );
-              setSrcName(IndivdualNews[0].source);
+              setSrcHeadline(IndivdualNews[0].title);
               let Fletter = IndivdualNews[0]
                 ? IndivdualNews[0].source.charAt(0)
                 : "";
@@ -66,7 +68,7 @@ const Profile = memo(() => {
                 userData.length > 0 ? userData[0].belivibalityIndex : 0;
               setPIndex(priorIndex);
               setBIndex(belivIndex);
-              setSrcURL(IndivdualNews[0].url);
+              setText(IndivdualNews[0].content);
             }
           });
       }
@@ -168,14 +170,6 @@ const Profile = memo(() => {
       });
   };
 
-  const bypassCheck = () => {
-    if (srcName !== "youtube.com") {
-      return "x-frame-bypass";
-    } else {
-      return "null";
-    }
-  };
-
   const backButton = () => {
     getNewsHandler(currentNewsIndex - 1);
   };
@@ -206,16 +200,10 @@ const Profile = memo(() => {
           </Tooltip>
         </div>
         <Card className={"card"}>
+          <CardHeader title={srcHeadline} style={{ width: "557.23px" }} />
           <CardContent className="MuiCardContent-root:last-child ">
-            <CardContent>
-              <iframe
-                is={bypassCheck()}
-                width="557.23px"
-                height="507px"
-                title={srcURL}
-                key={srcURL}
-                src={srcURL}
-              ></iframe>
+            <CardContent style={{ width: "557.23px", height: "507px" }}>
+              <p style={{ padding: "10px 10px 0px 10px" }}>{srcText}</p>
             </CardContent>
           </CardContent>
         </Card>
@@ -226,10 +214,10 @@ const Profile = memo(() => {
               style={{ fontSize: "larger" }}
               gutterBottom
             >
-              Do you think this news is true?
+              Do you believe in the news?
             </Typography>
             <div style={{ marginBottom: "12px" }}></div>
-            <FormControl component="fieldset">
+            <FormControl className="formcontrol" component="fieldset">
               <RadioGroup
                 row
                 aria-label="position"
@@ -240,13 +228,13 @@ const Profile = memo(() => {
                 <FormControlLabel
                   value="0"
                   control={<Radio />}
-                  label="very unsatisfied"
+                  label="very unbelievable"
                   labelPlacement="top"
                 />
                 <FormControlLabel
                   value="1"
                   control={<Radio />}
-                  label="unsatisfied"
+                  label="unbelievable"
                   labelPlacement="top"
                 />
                 <FormControlLabel
@@ -258,13 +246,13 @@ const Profile = memo(() => {
                 <FormControlLabel
                   value="3"
                   control={<Radio />}
-                  label="satisfied"
+                  label="believable"
                   labelPlacement="top"
                 />
                 <FormControlLabel
                   value="4"
                   control={<Radio />}
-                  label="very satisfied"
+                  label="very believable"
                   labelPlacement="top"
                 />
               </RadioGroup>
@@ -279,7 +267,7 @@ const Profile = memo(() => {
               Do you have prior knowledge about this article?
             </Typography>
             <div style={{ marginBottom: "12px" }}></div>
-            <FormControl component="fieldset">
+            <FormControl className="formcontrol" component="fieldset">
               <RadioGroup
                 row
                 aria-label="position"
@@ -290,13 +278,13 @@ const Profile = memo(() => {
                 <FormControlLabel
                   value="0"
                   control={<Radio />}
-                  label="very unsatisfied"
+                  label="very unbelievable"
                   labelPlacement="top"
                 />
                 <FormControlLabel
                   value="1"
                   control={<Radio />}
-                  label="unsatisfied"
+                  label="unbelievable"
                   labelPlacement="top"
                 />
                 <FormControlLabel
@@ -308,13 +296,13 @@ const Profile = memo(() => {
                 <FormControlLabel
                   value="3"
                   control={<Radio />}
-                  label="satisfied"
+                  label="believable"
                   labelPlacement="top"
                 />
                 <FormControlLabel
                   value="4"
                   control={<Radio />}
-                  label="very satisfied"
+                  label="very believable"
                   labelPlacement="top"
                 />
               </RadioGroup>
@@ -356,4 +344,4 @@ const Profile = memo(() => {
   );
 });
 
-export default Profile;
+export default newProfile;
