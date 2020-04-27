@@ -278,13 +278,13 @@ const newProfile = memo(() => {
                 <FormControlLabel
                   value="0"
                   control={<Radio />}
-                  label="very unbelievable"
+                  label="very unsatisfied"
                   labelPlacement="top"
                 />
                 <FormControlLabel
                   value="1"
                   control={<Radio />}
-                  label="unbelievable"
+                  label="unsatisfied"
                   labelPlacement="top"
                 />
                 <FormControlLabel
@@ -296,13 +296,13 @@ const newProfile = memo(() => {
                 <FormControlLabel
                   value="3"
                   control={<Radio />}
-                  label="believable"
+                  label="satisfied"
                   labelPlacement="top"
                 />
                 <FormControlLabel
                   value="4"
                   control={<Radio />}
-                  label="very believable"
+                  label="very satisfied"
                   labelPlacement="top"
                 />
               </RadioGroup>
