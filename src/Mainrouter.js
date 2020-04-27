@@ -7,7 +7,7 @@ import Signin from "./signin/signin";
 import password from "./forgot-password/forgotpassword";
 import Profile from "./profile/profile";
 import Newprofile from "./newprofile/newprofile";
-import Resetpassword from "./reset-password/resetPassword";
+import Reset from "./reset-password/resetPassword";
 import Changepassword from "./change-password/changepassword";
 import Reportbug from "./reportbug/reportbug";
 import Language from "./language/language";
@@ -50,7 +50,7 @@ class MainRouter extends React.Component {
             component={Changepassword}
           />
           <ProtectedRoute exact path="/report/:newsId" component={Reportbug} />
-          <Route exact path="/reset/:token" component={Resetpassword} />
+          <Route exact path="/reset/:token" component={Reset} />
         </Switch>
       </div>
     );

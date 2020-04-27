@@ -66,8 +66,8 @@ const newProfile = memo(() => {
                 userData.length > 0 ? userData[0].priorknowledge : 0;
               let belivIndex =
                 userData.length > 0 ? userData[0].belivibalityIndex : 0;
-              setPIndex(priorIndex);
-              setBIndex(belivIndex);
+              setPIndex(priorIndex.toString());
+              setBIndex(belivIndex.toString());
               setText(IndivdualNews[0].content);
             }
           });
@@ -184,7 +184,7 @@ const newProfile = memo(() => {
     <div className="ProfileContainer">
       <div className="profileLayout">
         <div className={"button-right"}>
-          <Tooltip
+          {/* <Tooltip
             open={open}
             onClose={handleClose}
             onOpen={handleOpen}
@@ -197,7 +197,7 @@ const newProfile = memo(() => {
             >
               <BugReportIcon />
             </Button>
-          </Tooltip>
+          </Tooltip> */}
         </div>
         <Card className={"card"}>
           <CardHeader title={srcHeadline} style={{ width: "557.23px" }} />
@@ -214,7 +214,7 @@ const newProfile = memo(() => {
               style={{ fontSize: "larger" }}
               gutterBottom
             >
-              Do you believe in the news?
+              Do you think this news sounds believable?
             </Typography>
             <div style={{ marginBottom: "12px" }}></div>
             <FormControl className="formcontrol" component="fieldset">
@@ -222,7 +222,7 @@ const newProfile = memo(() => {
                 row
                 aria-label="position"
                 name="position"
-                value={bIndex.toString()}
+                value={bIndex}
                 onClick={handleBindexChange}
               >
                 <FormControlLabel
@@ -272,7 +272,7 @@ const newProfile = memo(() => {
                 row
                 aria-label="position"
                 name="position"
-                value={pIndex.toString()}
+                value={pIndex}
                 onClick={handlePindexChange}
               >
                 <FormControlLabel

@@ -78,7 +78,12 @@
 .MuiIconButton-label {
   color: #fff !important;
 }
-
+.MuiFormGroup-root {
+  width: 530px !important;
+}
+.MuiFormControlLabel-root {
+  flex-grow: 1 !important;
+}
 @media only screen and (max-width: 600px) {
   .ProfileContainer {
     margin: 10px 20px;

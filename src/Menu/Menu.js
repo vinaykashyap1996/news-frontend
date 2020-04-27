@@ -127,7 +127,7 @@ const SimpleMenu = (history, isLoggedIn) => {
                           </>
                         </MenuItem>
                       )}
-                    {history.location.pathname !== "/changepassword" && (
+                    {/* {history.location.pathname !== "/changepassword" && (
                       <MenuItem id="change" onClick={handleClose}>
                         <>
                           <Link
@@ -142,7 +142,7 @@ const SimpleMenu = (history, isLoggedIn) => {
                           </Link>
                         </>
                       </MenuItem>
-                    )}
+                    )} */}
                     <MenuItem onClick={handleClose}>
                       <>
                         <ul>

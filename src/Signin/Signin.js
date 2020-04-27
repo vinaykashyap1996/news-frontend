@@ -104,9 +104,9 @@ const Signin = memo(props => {
           </Button>
         </div>
         <div className="forgotpassword">
-          <Link className="nav-link" to="/forgotpassword">
+          {/* <Link className="nav-link" to="/forgotpassword">
             Forgot password?
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
