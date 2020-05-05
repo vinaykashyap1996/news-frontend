@@ -10,7 +10,6 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import SettingsIcon from "@material-ui/icons/Settings";
-
 const isActive = (history, path) => {
   if (history.location.pathname === path) return { color: "#FFF5F8" };
   else return { color: "#ffffff" };
@@ -127,7 +126,7 @@ const SimpleMenu = (history, isLoggedIn) => {
                           </>
                         </MenuItem>
                       )}
-                    {/* {history.location.pathname !== "/changepassword" && (
+                    {history.location.pathname !== "/changepassword" && (
                       <MenuItem id="change" onClick={handleClose}>
                         <>
                           <Link
@@ -142,7 +141,7 @@ const SimpleMenu = (history, isLoggedIn) => {
                           </Link>
                         </>
                       </MenuItem>
-                    )} */}
+                    )}
                     <MenuItem onClick={handleClose}>
                       <>
                         <ul>

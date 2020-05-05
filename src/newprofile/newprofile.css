@@ -1,8 +1,25 @@
+.TopContainer {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; */
+  float: right;
+}
 .ProfileContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 10px 0;
+}
+.ProfileContainer .BadgeLayout {
+  margin-right: auto;
+}
+.ProfileContainer .ProgressContainer {
+  margin-left: auto;
+  /* position: absolute; */
+  /* top: 15px;
+  right: 20px; */
 }
 
 .ProfileContainer .profileLayout {
@@ -79,10 +96,25 @@
   color: #fff !important;
 }
 .MuiFormGroup-root {
-  width: 530px !important;
+  display: grid !important;
+  grid-template-columns: 80px 134px 80px 85px 85px 120px !important;
 }
-.MuiFormControlLabel-root {
-  flex-grow: 1 !important;
+
+.profileLayout .MuiOutlinedInput-input {
+  padding: 10px 14px;
+  width: 540px !important;
+  height: 60px !important;
+  background-color: white !important;
+  border-radius: 4px;
+}
+.profileLayout
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #1ab188;
+  border-width: 1px;
+}
+.profileLayout .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  color: #1ab188;
 }
 @media only screen and (max-width: 600px) {
   .ProfileContainer {

@@ -43,14 +43,18 @@ class MainRouter extends React.Component {
           <Route exact path="/forgotpassword" component={password} />
           <ProtectedRoute exact path="/language" component={Language} />
           <ProtectedRoute exact path="/category" component={Category} />
-          <ProfileRoute />
           <ProtectedRoute
             exact
             path="/changepassword"
             component={Changepassword}
           />
-          <ProtectedRoute exact path="/report/:newsId" component={Reportbug} />
+          <ProtectedRoute
+            exact={true}
+            path="/report/:newsId"
+            component={Reportbug}
+          />
           <Route exact path="/reset/:token" component={Reset} />
+          <ProfileRoute />
         </Switch>
       </div>
     );
