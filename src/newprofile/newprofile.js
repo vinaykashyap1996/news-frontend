@@ -361,7 +361,7 @@ const newProfile = memo(() => {
             />
           </div>
           <div className="buttongroup">
-            {currentNewsIndex !== 0 && (
+            {/* {currentNewsIndex !== 0 && (
               <div className="button-left">
                 <label htmlFor="contained-button-file">
                   <Button
@@ -374,7 +374,7 @@ const newProfile = memo(() => {
                   </Button>
                 </label>
               </div>
-            )}
+            )} */}
             {currentNewsIndex !== allNewsIDs.length - 1 && (
               <div>
                 <label htmlFor="contained-button-file">
