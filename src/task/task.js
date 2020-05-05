@@ -47,7 +47,6 @@ const Task = () => {
             >
               <p style={{ padding: "10px" }}>Dear participant,</p>
               <p style={{ padding: "10px" }}>
-                {" "}
                 Thank you for participating in our task. The aim of the task is
                 to annotate news on their believability according to your point
                 of view. The news are in politics domain. They were collected
@@ -63,7 +62,7 @@ const Task = () => {
                 example: the article is not in politics domain the article is
                 not news there is a technical issue which prevents you annotate
                 you rate the article mistakenly and want to rate one more time
-                ... In such cases happen, we provide a bug report button which
+                .In such cases happen, we provide a bug report button which
                 activate comment field for reporting the issue.{" "}
                 <p style={{ padding: "10px" }}>RULES:</p>{" "}
                 <p style={{ padding: "10px" }}>
@@ -71,7 +70,6 @@ const Task = () => {
                   annotate, please use bug report button and write the issue.
                 </p>
                 <p style={{ padding: "10px" }}>
-                  {" "}
                   2- If you are bored from the task, you can sign out the
                   framework and sign in again. We save your progress.
                 </p>
